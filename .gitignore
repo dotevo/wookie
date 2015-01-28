@@ -1,10 +1,17 @@
+# Build dir
+build/*
+
+#Binaries
 *.exe
 bin/*
-libs/*
+
+#Builded files
 *.o
 *.so
 *.a
 *.dll
+
+#Configs
 *.config
 *.files
 *.includes

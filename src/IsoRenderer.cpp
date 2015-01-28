@@ -6,8 +6,8 @@
 
 IsoRenderer::IsoRenderer()
 {
-    auto vertex = Shader::createFromFile("..\\src\\resources\\basic_vs.glsl", GL_VERTEX_SHADER);
-    auto fragment = Shader::createFromFile("..\\src\\resources\\basic_fs.glsl", GL_FRAGMENT_SHADER);
+    auto vertex = Shader::createFromFile("../tests/resources/basic_vs.glsl", GL_VERTEX_SHADER);
+    auto fragment = Shader::createFromFile("../tests/resources/basic_fs.glsl", GL_FRAGMENT_SHADER);
 
     loadShaders(vertex, fragment);
     m_glProgram = std::make_unique<Program>(m_shaderList);
