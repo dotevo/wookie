@@ -8,4 +8,5 @@ libs/*
 *.config
 *.files
 *.includes
+*.creator*
 
