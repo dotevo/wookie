@@ -1,4 +1,4 @@
-#include <wookie/rendering/GL/Glutils.h>
+#include <wookie/rendering/GL/GLutils.h>
 
 #include <fstream>
 #include <stdexcept>

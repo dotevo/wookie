@@ -1,6 +1,6 @@
 #pragma once
 
-#include <wookie/rendering/GL/Glutils.h>
+#include <wookie/rendering/GL/GLutils.h>
 #include <wookie/rendering/Renderer.h>
 #include <wookie/rendering/Renderable.h>
 
