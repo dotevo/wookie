@@ -1,6 +1,6 @@
 #pragma once
 
-#include <wookie/Window.h>
+#include <wookie/core/Window.h>
 
 class RenderContext
 {

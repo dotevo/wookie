@@ -41,8 +41,12 @@ include_directories(${CMAKE_SOURCE_DIR}/libs/glm)
 #Wookie
 include_directories(${CMAKE_SOURCE_DIR}/include)
 file(GLOB_RECURSE HEADERS "${CMAKE_SOURCE_DIR}/include/*.h")
+
 aux_source_directory(src SOURCES)
 aux_source_directory(src/ecs SOURCES)
+aux_source_directory(src/core SOURCES)
+aux_source_directory(src/rendering SOURCES)
+aux_source_directory(src/rendering/GL SOURCES)
 
 if(WOOKIE_BUILD_SHARED)
     add_library(wookie SHARED ${SOURCES} ${HEADERS})

@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace glutils {
+namespace GLutils {
 
     enum AttribLoc { POSITION, COLOR };
 

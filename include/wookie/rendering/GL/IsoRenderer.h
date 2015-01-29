@@ -1,13 +1,13 @@
 #pragma once
 
-#include <wookie/Glutils.h>
-#include <wookie/Renderer.h>
-#include <wookie/Renderable.h>
+#include <wookie/rendering/GL/Glutils.h>
+#include <wookie/rendering/Renderer.h>
+#include <wookie/rendering/Renderable.h>
 
 #include <memory>
 #include <vector>
 
-using namespace glutils;
+using namespace GLutils;
 
 class IsoRenderer : public Renderer
 {

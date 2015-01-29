@@ -1,6 +1,6 @@
-#include <wookie/Renderable.h>
-#include <wookie/RenderSystem.h>
-#include <wookie/IsoRenderer.h>
+#include <wookie/rendering/Renderable.h>
+#include <wookie/rendering/RenderSystem.h>
+#include <wookie/rendering/GL/IsoRenderer.h>
 
 #include <wookie/ecs/World.h>
 

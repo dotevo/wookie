@@ -1,5 +1,5 @@
-#include <wookie/Engine.h>
-#include <wookie/RenderContext.h>
+#include <wookie/core/Engine.h>
+#include <wookie/core/RenderContext.h>
 
 
 void Engine::run()

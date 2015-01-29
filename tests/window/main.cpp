@@ -1,6 +1,7 @@
-#include <wookie/RenderSystem.h>
-#include <wookie/Renderable.h>
-#include <wookie/Engine.h>
+#include <wookie/core/Engine.h>
+#include <wookie/rendering/RenderSystem.h>
+#include <wookie/rendering/Renderable.h>
+
 #include <iostream>
 
 template<class T>

@@ -1,11 +1,11 @@
-#include <wookie/Glutils.h>
+#include <wookie/rendering/GL/Glutils.h>
 
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
 #include <iostream>
 
-namespace glutils {
+namespace GLutils {
 
     Shader::Shader(const std::string &source, GLenum shaderType) {
         m_object = glCreateShader(shaderType);

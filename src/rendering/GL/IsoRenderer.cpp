@@ -1,8 +1,5 @@
 #include <wookie/ecs/GameObject.h>
-
-#include <wookie/IsoRenderer.h>
-
-#include <iostream>
+#include <wookie/rendering/GL/IsoRenderer.h>
 
 IsoRenderer::IsoRenderer()
 {
