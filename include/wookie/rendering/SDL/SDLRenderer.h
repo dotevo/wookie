@@ -8,6 +8,9 @@ class SDLRenderer : public Renderer
 {
 public:
     SDLRenderer();
+    virtual ~SDLRenderer() = default;
+
+    virtual void render(Renderable&) override;
 };
 
 
