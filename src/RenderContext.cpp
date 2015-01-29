@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "RenderContext.h"
+#include <wookie/RenderContext.h>
 
 RenderContext::RenderContext() {
     glfwSetErrorCallback([](int code, const char *msg) {

@@ -1,5 +1,5 @@
-#include "Window.h"
-#include "RenderContext.h"
+#include <wookie/Window.h>
+#include <wookie/RenderContext.h>
 
 Window::~Window() {
     if (m_handle) {

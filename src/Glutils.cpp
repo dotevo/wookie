@@ -1,4 +1,4 @@
-#include "Glutils.h"
+#include <wookie/Glutils.h>
 
 #include <fstream>
 #include <stdexcept>

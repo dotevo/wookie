@@ -16,4 +16,4 @@ bin/*
 *.files
 *.includes
 *.creator*
-
+CMakeLists.txt.user

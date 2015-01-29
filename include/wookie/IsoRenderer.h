@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Glutils.h"
-#include "Renderer.h"
-#include "Renderable.h"
+#include <wookie/Glutils.h>
+#include <wookie/Renderer.h>
+#include <wookie/Renderable.h>
 
 #include <memory>
 #include <vector>

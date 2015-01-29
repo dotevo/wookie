@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RenderContext.h"
-#include "Renderer.h"
+#include <wookie/RenderContext.h>
+#include <wookie/Renderer.h>
 
-#include <System.h>
+#include <wookie/ecs/System.h>
 #include <memory>
 
 class RenderSystem : public System<RenderSystem>

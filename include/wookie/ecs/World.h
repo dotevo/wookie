@@ -1,7 +1,7 @@
 #pragma once
 
-#include "GameObject.h"
-#include "System.h"
+#include <wookie/ecs/GameObject.h>
+#include <wookie/ecs/System.h>
 
 #include <algorithm>
 
