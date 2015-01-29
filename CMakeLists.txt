@@ -20,31 +20,26 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/libs/glfw)
 execute_process(COMMAND python ${CMAKE_SOURCE_DIR}/libs/gl3w/gl3w_gen.py)
 add_subdirectory(${CMAKE_SOURCE_DIR}/libs/gl3w)
 
+
+
+#Includes
 include_directories(${CMAKE_SOURCE_DIR}/libs/glfw/include)
 include_directories(${CMAKE_SOURCE_DIR}/libs/gl3w/include)
 include_directories(${CMAKE_SOURCE_DIR}/libs/glm)
 
-include_directories(${CMAKE_SOURCE_DIR}/include/ecs)
-include_directories(${CMAKE_SOURCE_DIR}/include)
 
+#Wookie
+include_directories(${CMAKE_SOURCE_DIR}/include)
+file(GLOB_RECURSE HEADERS "${CMAKE_SOURCE_DIR}/include/*.h")
 aux_source_directory(src SOURCES)
 aux_source_directory(src/ecs SOURCES)
+
+if (WOOKIE_BUILD_SHARED)
+    add_library(wookie SHARED ${SOURCES} ${HEADERS})
+else()
+    add_library(wookie ${SOURCES} ${HEADERS})
+endif()
 
 if (WOOKIE_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
-
-if (WOOKIE_BUILD_SHARED)
-    add_library(wookie SHARED ${SOURCES})
-else()
-    add_library(wookie ${SOURCES})
-endif()
-
-
-#add_executable(wookie ${SOURCE_FILES})
-
-#TESTS
-#set(SOURCE_FILES main.cpp ${SOURCES})
-#add_executable(wookie ${SOURCE_FILES})
-#target_link_libraries(wookie gl3w glfw ${GLFW_LIBRARIES})
-

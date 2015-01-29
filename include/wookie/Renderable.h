@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Component.h>
+#include <wookie/ecs/Component.h>
 #include <glm/glm.hpp>
 #include <vector>
 

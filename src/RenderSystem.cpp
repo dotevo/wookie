@@ -1,8 +1,8 @@
-#include "Renderable.h"
-#include "RenderSystem.h"
-#include "IsoRenderer.h"
+#include <wookie/Renderable.h>
+#include <wookie/RenderSystem.h>
+#include <wookie/IsoRenderer.h>
 
-#include <World.h>
+#include <wookie/ecs/World.h>
 
 void RenderSystem::setup() {
     m_renderer = std::make_unique<IsoRenderer>();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameObject.h"
+#include <wookie/ecs/GameObject.h>
 
 class Triangle : public GameObject
 {

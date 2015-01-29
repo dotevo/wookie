@@ -1,6 +1,6 @@
-#include <GameObject.h>
+#include <wookie/ecs/GameObject.h>
 
-#include "IsoRenderer.h"
+#include <wookie/IsoRenderer.h>
 
 #include <iostream>
 

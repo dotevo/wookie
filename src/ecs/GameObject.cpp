@@ -1,1 +1,1 @@
-#include "GameObject.h"
+#include <wookie/ecs/GameObject.h>
