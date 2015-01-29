@@ -11,7 +11,7 @@ include(FindPkgConfig)
 
 option(WOOKIE_BUILD_TESTS "Build the WOOKIE test programs" ON)
 option(WOOKIE_BUILD_SHARED "Build the shared lib" OFF)
-option(WOOKIE_USE_SDL "Build with SDL" OFF)
+option(WOOKIE_USE_SDL "Build with SDL" ON)
 
 set(EXTRA_LIBS)
 
@@ -29,8 +29,9 @@ list(APPEND EXTRA_LIBS gl3w)
 
 #SDL
 if(WOOKIE_USE_SDL)
-    add_definitions( -DSDL )
+    add_definitions( -DHAVE_SDL )
     list(APPEND EXTRA_LIBS SDL2)
+    aux_source_directory(src/rendering/SDL SOURCES)
 endif()
 
 #Includes
