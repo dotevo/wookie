@@ -1,8 +1,9 @@
 #pragma once
 
+#include <wookie/core/WObject.h>
 #include <wookie/core/Window.h>
 
-class RenderContext
+class RenderContext: public WObject
 {
 public:
     RenderContext();

@@ -2,8 +2,9 @@
 
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
-
 #include <string>
+
+#include <wookie/core/WObject.h>
 
 enum WindowMode
 {
@@ -11,7 +12,7 @@ enum WindowMode
     FULLSCREEN
 };
 
-class Window
+class Window: public WObject
 {
 public:
     friend class RenderContext;
