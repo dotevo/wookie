@@ -12,6 +12,7 @@ include(FindPkgConfig)
 option(WOOKIE_BUILD_TESTS "Build the WOOKIE test programs" ON)
 option(WOOKIE_BUILD_SHARED "Build the shared lib" OFF)
 option(WOOKIE_USE_SDL "Build with SDL" ON)
+option(WOOKIE_USE_LIBROCKET "Build with libRocket" ON)
 
 set(EXTRA_LIBS)
 
@@ -32,6 +33,12 @@ if(WOOKIE_USE_SDL)
     add_definitions( -DHAVE_SDL )
     list(APPEND EXTRA_LIBS SDL2)
     aux_source_directory(src/rendering/SDL SOURCES)
+endif()
+
+#Build librocket
+if(WOOKIE_USE_LIBROCKET)
+    add_subdirectory(${CMAKE_SOURCE_DIR}/libs/librocket/Build)
+    list(APPEND EXTRA_LIBS RocketCore)
 endif()
 
 #Includes
