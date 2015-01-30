@@ -1,0 +1,34 @@
+{
+    "namespace":"tiles",
+    "name":"grass",
+    "images":[
+        {
+            "type": "image",
+            "path": "grass/45.png",
+            "properties": {
+                "angle": 45
+            }
+        },
+        {
+            "type": "image",
+            "path": "grass/135.png",
+            "properties": {
+                "angle": 135
+            }
+        },
+        {
+            "type": "image",
+            "path": "grass/225.png",
+            "properties": {
+                "angle": 225
+            }
+        },
+        {
+            "type": "image",
+            "path": "grass/315.png",
+            "properties": {
+                "angle": 315
+            }
+        }
+    ]
+}

@@ -65,6 +65,7 @@ aux_source_directory(src/ecs SOURCES)
 aux_source_directory(src/core SOURCES)
 aux_source_directory(src/rendering SOURCES)
 aux_source_directory(src/rendering/GL SOURCES)
+aux_source_directory(src/resource SOURCES)
 
 if(WOOKIE_BUILD_SHARED)
     add_library(wookie SHARED ${SOURCES} ${HEADERS})
