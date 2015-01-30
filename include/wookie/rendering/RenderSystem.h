@@ -9,7 +9,10 @@
 class RenderSystem : public System<RenderSystem>
 {
 public:
-    RenderSystem(uint32_t prio) : System(prio) {}
+    RenderSystem(std::unique_ptr<Renderer>&& rend, uint32_t prio) :
+        System(prio),
+        m_renderer(std::move(rend))
+    {}
 
     virtual void setup() override;
     virtual void update(World &) override;

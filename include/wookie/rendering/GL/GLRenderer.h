@@ -9,11 +9,11 @@
 
 using namespace GLutils;
 
-class IsoRenderer : public Renderer
+class GLrenderer : public Renderer
 {
 public:
-    IsoRenderer();
-    virtual ~IsoRenderer() = default;
+    GLrenderer() = default;
+    virtual ~GLrenderer() = default;
 
     template<typename T>
     void loadShaders(T& shader) {
@@ -26,7 +26,9 @@ public:
         loadShaders(shaders...);
     }
 
-    virtual void render(Renderable&) override;
+    virtual void initialize() override;
+
+    virtual void render(Renderable const&) override;
 
 private:
     std::vector<Shader> m_shaderList;

@@ -1,8 +1,7 @@
 #include <wookie/ecs/GameObject.h>
-#include <wookie/rendering/GL/IsoRenderer.h>
+#include <wookie/rendering/GL/GLrenderer.h>
 
-IsoRenderer::IsoRenderer()
-{
+void GLrenderer::initialize() {
     auto vertex = Shader::createFromFile("../tests/resources/basic_vs.glsl", GL_VERTEX_SHADER);
     auto fragment = Shader::createFromFile("../tests/resources/basic_fs.glsl", GL_FRAGMENT_SHADER);
 
@@ -15,14 +14,14 @@ IsoRenderer::IsoRenderer()
     glBindVertexArray(m_vao);
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
-    glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, coords));
     glEnableVertexAttribArray(AttribLoc::POSITION);
 
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void IsoRenderer::render(Renderable& obj) {
+void GLrenderer::render(const Renderable& obj) {
 
     static_assert(sizeof(glm::vec3) == sizeof(GLfloat) * 3, "Platform doesn't support this directly.");
 
@@ -33,7 +32,7 @@ void IsoRenderer::render(Renderable& obj) {
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
-    glBufferData(GL_ARRAY_BUFFER, obj.vertices.size() * sizeof(glm::vec3), &obj.vertices[0], GL_STREAM_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, obj.shape.size() * sizeof(Vertex), &obj.shape[0], GL_STREAM_DRAW);
 
     glUseProgram(m_glProgram->id());
     glDrawArrays(GL_TRIANGLES, 0, 3);

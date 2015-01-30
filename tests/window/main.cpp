@@ -1,4 +1,5 @@
 #include <wookie/core/Engine.h>
+#include <wookie/rendering/GL/GLrenderer.h>
 #include <wookie/rendering/RenderSystem.h>
 #include <wookie/rendering/Renderable.h>
 
@@ -12,7 +13,7 @@ struct Direction : Component<Direction> {};
 
 int main() {
     Engine e;
-    auto r = std::make_unique<RenderSystem>(6);
+    auto r = std::make_unique<RenderSystem>(std::make_unique<GLrenderer>(), 6);
 
     auto& world = e.world();
 
@@ -25,7 +26,12 @@ int main() {
     Position c1;
     Position c2;
     Direction c3;
-    Renderable c4 {{{-0.5f, -0.5f, 0.0f}, {-0.5f, 0.5f, 0.0f}, {0.5f, 0.5f, 0.0f}, {0.5f, -0.5f, 0.0f}}};
+
+    Vertex v1 {{-0.5f, -0.5f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+    Vertex v2 {{0.0f, 0.5f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+    Vertex v3 {{0.5f, -0.5f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+
+    Renderable c4 {{v1, v2, v3}};
 
     obj.add(c1, c4);
     auto o = obj.get<Position>();
