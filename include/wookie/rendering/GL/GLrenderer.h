@@ -34,6 +34,8 @@ private:
     std::vector<Shader> m_shaderList;
     std::unique_ptr<Program> m_glProgram {nullptr};
 
+    static constexpr int VERTEX_BUFFER_SIZE = 1000;
+
     GLuint m_vao {0};
     GLuint m_vbo {0};
 };

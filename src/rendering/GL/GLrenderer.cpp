@@ -14,6 +14,8 @@ void GLrenderer::initialize() {
     glBindVertexArray(m_vao);
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
+    glBufferData(GL_ARRAY_BUFFER, VERTEX_BUFFER_SIZE * sizeof(Vertex), 0, GL_STREAM_DRAW);
+
     glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, coords));
     glEnableVertexAttribArray(AttribLoc::POSITION);
 
@@ -32,7 +34,7 @@ void GLrenderer::render(const Renderable& obj) {
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
-    glBufferData(GL_ARRAY_BUFFER, obj.shape.size() * sizeof(Vertex), &obj.shape[0], GL_STREAM_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, obj.shape.size() * sizeof(Vertex), &obj.shape[0]);
 
     glUseProgram(m_glProgram->id());
     glDrawArrays(GL_TRIANGLES, 0, 3);
