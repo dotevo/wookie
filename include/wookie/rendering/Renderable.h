@@ -6,7 +6,7 @@
 
 struct Vertex {
     glm::vec3 coords;
-    glm::vec3 text2d;
+    glm::vec3 tex2d;
 };
 
 struct Renderable : public Component<Renderable>

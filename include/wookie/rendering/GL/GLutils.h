@@ -7,7 +7,7 @@
 
 namespace GLutils {
 
-    enum AttribLoc { POSITION, COLOR };
+    enum AttribLoc { POSITION, TEXTURE };
 
     class Shader {
     public:

@@ -43,7 +43,7 @@ GLcontext::GLcontext() {
         throw std::runtime_error { "OpenGL 3.2+ not supported "};
 
     // Initialize window
-    initialize();
+    windowSetup();
 }
 
 GLcontext::~GLcontext() {
@@ -54,7 +54,7 @@ GLcontext::~GLcontext() {
     }
 }
 
-void GLcontext::initialize() {
+void GLcontext::windowSetup() {
     glfwSetKeyCallback(m_handle, keyCallback);
     glfwSetWindowCloseCallback(m_handle, closeCallback);
     glfwSetMouseButtonCallback(m_handle, mouseButtonCallback);
@@ -62,13 +62,6 @@ void GLcontext::initialize() {
     glfwSetFramebufferSizeCallback(m_handle, framebufferSize);
 
     glfwSetInputMode(m_handle, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-}
-
-bool GLcontext::update() {
-    glfwPollEvents();
-    glfwSwapBuffers(m_handle);
-
-    return !glfwWindowShouldClose(m_handle);
 }
 
 void GLcontext::framebufferSize(GLFWwindow *window, int width, int height) {
@@ -88,6 +81,9 @@ void GLcontext::closeCallback(GLFWwindow* window) {
 }
 
 void GLcontext::resizeCallback(GLFWwindow *window, int width, int height) {
+    auto context = static_cast<GLcontext*>(glfwGetWindowUserPointer(window));
+    context->m_width = width;
+    context->m_height = height;
     glfwSetWindowSize(window, width, height);
 }
 
@@ -98,7 +94,7 @@ WindowMode GLcontext::mode() const {
         return WINDOWED;
 }
 
-void GLcontext::setTitle(std::string &title) {
+void GLcontext::setWindowTitle(std::string &title) {
     glfwSetWindowTitle(m_handle, title.c_str());
 }
 

@@ -4,11 +4,11 @@
 void Engine::run()
 {
     auto context = glfwGetCurrentContext();
-    auto window = static_cast<GLcontext*>(glfwGetWindowUserPointer(context));
-
     while (!glfwWindowShouldClose(context)) {
         m_world.update();
-        window->update();
+
+        glfwPollEvents();
+        glfwSwapBuffers(context);
     }
 }
 

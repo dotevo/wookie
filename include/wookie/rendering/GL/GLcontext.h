@@ -22,11 +22,7 @@ public:
 
     WindowMode mode() const;
 
-    void setTitle(std::string&);
-
-    bool update();
-
-    void initialize();
+    void setWindowTitle(std::string&);
 
 private:
     static void mouseButtonCallback(GLFWwindow*, int, int, int);
@@ -34,6 +30,8 @@ private:
     static void resizeCallback(GLFWwindow*, int, int);
     static void closeCallback(GLFWwindow*);
     static void framebufferSize(GLFWwindow*, int, int);
+
+    void windowSetup();
 
     GLFWwindow *m_handle {nullptr};
     bool m_resizable {true};

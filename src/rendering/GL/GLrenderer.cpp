@@ -20,9 +20,11 @@ void GLrenderer::initialize() {
 
     glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, coords));
     glEnableVertexAttribArray(AttribLoc::POSITION);
+    glVertexAttribPointer(AttribLoc::TEXTURE, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tex2d));
+    glEnableVertexAttribArray(AttribLoc::TEXTURE);
 
-    glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 }
 
 void GLrenderer::render(const Renderable& obj) {

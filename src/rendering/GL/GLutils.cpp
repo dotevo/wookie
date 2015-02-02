@@ -58,7 +58,7 @@ namespace GLutils {
 
         // Bind attributes with predefined names
         glBindAttribLocation(m_object, AttribLoc::POSITION, "ie_pos");
-        glBindAttribLocation(m_object, AttribLoc::COLOR , "ie_color");
+        glBindAttribLocation(m_object, AttribLoc::TEXTURE , "ie_tex");
 
         glLinkProgram(m_object);
 

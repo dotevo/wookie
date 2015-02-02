@@ -38,4 +38,5 @@ private:
 
     GLuint m_vao {0};
     GLuint m_vbo {0};
+    GLuint m_ibo {0};
 };
