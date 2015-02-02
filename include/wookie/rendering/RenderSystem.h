@@ -1,7 +1,7 @@
 #pragma once
 
-#include <wookie/core/RenderContext.h>
 #include <wookie/ecs/System.h>
+#include <wookie/rendering/GL/GLcontext.h>
 #include <wookie/rendering/Renderer.h>
 
 #include <memory>
@@ -19,6 +19,6 @@ public:
     virtual void shutdown() override;
 
 private:
-    RenderContext m_rc;
+    GLcontext m_rc;
     std::unique_ptr<Renderer> m_renderer;
 };

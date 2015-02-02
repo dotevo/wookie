@@ -3,22 +3,18 @@
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
 
-#include <string>
-
 enum WindowMode
 {
     WINDOWED,
     FULLSCREEN
 };
 
-class Window
+class GLcontext
 {
 public:
-    friend class RenderContext;
+    GLcontext();
 
-    Window(const Window&) = delete;
-    Window& operator=(const Window&) = delete;
-    ~Window();
+    ~GLcontext();
 
     int width() const;
 
@@ -28,17 +24,16 @@ public:
 
     void setTitle(std::string&);
 
-private:
-    Window() = default;
+    bool update();
 
+    void initialize();
+
+private:
     static void mouseButtonCallback(GLFWwindow*, int, int, int);
     static void keyCallback(GLFWwindow*, int, int, int, int);
     static void resizeCallback(GLFWwindow*, int, int);
     static void closeCallback(GLFWwindow*);
-
-    void init(GLFWwindow*);
-
-    bool update();
+    static void framebufferSize(GLFWwindow*, int, int);
 
     GLFWwindow *m_handle {nullptr};
     bool m_resizable {true};

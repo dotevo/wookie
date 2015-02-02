@@ -2,6 +2,8 @@
 #include <wookie/rendering/GL/GLrenderer.h>
 
 void GLrenderer::initialize() {
+    static_assert(sizeof(glm::vec3) == sizeof(GLfloat) * 3, "Platform doesn't support this directly.");
+
     auto vertex = Shader::createFromFile("../tests/resources/basic_vs.glsl", GL_VERTEX_SHADER);
     auto fragment = Shader::createFromFile("../tests/resources/basic_fs.glsl", GL_FRAGMENT_SHADER);
 
@@ -14,7 +16,7 @@ void GLrenderer::initialize() {
     glBindVertexArray(m_vao);
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
-    glBufferData(GL_ARRAY_BUFFER, VERTEX_BUFFER_SIZE * sizeof(Vertex), 0, GL_STREAM_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, BUFFER_SIZE * sizeof(Vertex), 0, GL_STREAM_DRAW);
 
     glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, coords));
     glEnableVertexAttribArray(AttribLoc::POSITION);
@@ -24,10 +26,7 @@ void GLrenderer::initialize() {
 }
 
 void GLrenderer::render(const Renderable& obj) {
-
-    static_assert(sizeof(glm::vec3) == sizeof(GLfloat) * 3, "Platform doesn't support this directly.");
-
-    glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glBindVertexArray(m_vao);
@@ -40,6 +39,5 @@ void GLrenderer::render(const Renderable& obj) {
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glUseProgram(0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }

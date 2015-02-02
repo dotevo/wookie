@@ -1,7 +1,6 @@
 #include <wookie/core/Engine.h>
 #include <wookie/rendering/GL/GLrenderer.h>
 #include <wookie/rendering/RenderSystem.h>
-#include <wookie/rendering/Renderable.h>
 
 #include <iostream>
 
@@ -21,15 +20,16 @@ int main() {
 
     auto& obj = world.create();
 
-    auto& tileMap = world.create();
+    auto& tile = world.create();
 
     Position c1;
     Position c2;
     Direction c3;
 
-    Vertex v1 {{-0.5f, -0.5f, 0.0f}, {0.0f, 0.0f, 0.0f}};
-    Vertex v2 {{0.0f, 0.5f, 0.0f}, {0.0f, 0.0f, 0.0f}};
-    Vertex v3 {{0.5f, -0.5f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+    Vertex v1 {{-0.2f, -0.2f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+    Vertex v2 {{-0.2f, 0.2f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+    Vertex v3 {{0.2f, 0.2f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+    Vertex v4 {{0.2f, -0.2f, 0.0f}, {0.0f, 0.0f, 0.0f}};
 
     Renderable c4 {{v1, v2, v3}};
 
