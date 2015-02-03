@@ -5,8 +5,8 @@
 #include <vector>
 
 struct Vertex {
-    glm::vec3 coords;
-    glm::vec3 tex2d;
+    glm::vec3 position;
+    glm::vec3 color;
 };
 
 struct Renderable : public Component<Renderable>

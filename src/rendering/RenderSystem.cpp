@@ -15,7 +15,7 @@ void RenderSystem::update(World& world) {
         return;
 
     for (auto obj : world.objectsByComponents<Renderable>()) {
-        const auto r = std::get<0>(obj->get<Renderable>());
+        auto r = std::get<0>(obj->get<Renderable>());
         m_renderer->render(*r);
     }
 }

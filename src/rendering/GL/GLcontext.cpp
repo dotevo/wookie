@@ -68,11 +68,11 @@ void GLcontext::framebufferSize(GLFWwindow *window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
-void GLcontext::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+void GLcontext::mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
 
 }
 
-void GLcontext::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+void GLcontext::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
 
 }
 

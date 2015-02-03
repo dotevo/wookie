@@ -26,10 +26,10 @@ int main() {
     Position c2;
     Direction c3;
 
-    Vertex v1 {{-0.2f, -0.2f, 0.0f}, {1.0f, 0.0f, 0.0f}};
-    Vertex v2 {{-0.2f, 0.2f, 0.0f}, {0.0f, 1.0f, 0.0f}};
-    Vertex v3 {{0.2f, 0.2f, 0.0f}, {0.0f, 0.0f, 1.0f}};
-    Vertex v4 {{0.2f, -0.2f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+    Vertex v1 {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
+    Vertex v2 {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}};
+    Vertex v3 {{0.0f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
+    //Vertex v4 {{0.2f, -0.2f, 0.0f}, {0.0f, 0.0f, 0.0f}};
 
     Renderable c4 {{v1, v2, v3}};
 
@@ -60,7 +60,6 @@ int main() {
     std::cerr << obj2.hasComponents<Direction>();
     std::cerr << obj2.hasComponents<Position>();
     std::cerr << obj2.hasComponents<Position, Direction>();
-
 
     //TD<decltype(o)> objtype;
     //std::cerr << c1.group().to_string() << " " << c2.group().to_string() << " " << c3.group().to_string();

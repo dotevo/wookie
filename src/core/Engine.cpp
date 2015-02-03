@@ -9,6 +9,9 @@ void Engine::run()
 
         glfwPollEvents();
         glfwSwapBuffers(context);
+        if (glfwGetKey (context, GLFW_KEY_ESCAPE)) {
+          glfwSetWindowShouldClose (context, 1);
+        }
     }
 }
 
