@@ -1,8 +1,9 @@
 #pragma once
 
+#include <wookie/core/WObject.h>
 #include <wookie/ecs/World.h>
 
-class Engine
+class Engine: public WObject
 {
 public:
     Engine() = default;

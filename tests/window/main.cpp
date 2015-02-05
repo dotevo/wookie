@@ -1,4 +1,5 @@
 #include <wookie/core/Engine.h>
+#include <wookie/rendering/GL/GLcontext.h>
 #include <wookie/rendering/GL/GLrenderer.h>
 #include <wookie/rendering/RenderSystem.h>
 
@@ -12,7 +13,7 @@ struct Direction : Component<Direction> {};
 
 int main() {
     Engine e;
-    auto r = std::make_unique<RenderSystem>(std::make_unique<GLrenderer>(), 6);
+    auto r = std::make_unique<RenderSystem>(std::make_unique<GLcontext>(),std::make_unique<GLrenderer>(), 6);
 
     auto& world = e.world();
 

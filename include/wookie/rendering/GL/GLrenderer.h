@@ -1,6 +1,6 @@
 #pragma once
 
-#include <wookie/rendering/GL/Glutils.h>
+#include <wookie/rendering/GL/GLutils.h>
 #include <wookie/rendering/Renderer.h>
 #include <wookie/rendering/Renderable.h>
 
@@ -15,7 +15,7 @@ public:
     GLrenderer() = default;
     virtual ~GLrenderer() = default;
 
-    virtual void initialize() override;
+    virtual void initialize(std::unique_ptr<Context>&) override;
 
     virtual void render(Renderable const&) override;
 

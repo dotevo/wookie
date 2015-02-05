@@ -1,0 +1,36 @@
+{
+    "resources":[
+        {
+            "id": "1",
+            "type": "image",
+            "path": "grass/45.png",
+            "properties": {
+                "angle": 45
+            }
+        },
+        {
+            "id": "2",
+            "type": "image",
+            "path": "grass/135.png",
+            "properties": {
+                "angle": 135
+            }
+        },
+        {
+            "id": "3",
+            "type": "image",
+            "path": "grass/225.png",
+            "properties": {
+                "angle": 225
+            }
+        },
+        {
+            "id": "4",
+            "type": "image",
+            "path": "grass/315.png",
+            "properties": {
+                "angle": 315
+            }
+        }
+    ]
+}

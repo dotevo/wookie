@@ -1,0 +1,12 @@
+[
+    {
+        "name":"grass",
+        "namespace":"tiles",
+        "path":"grass.json"
+    },
+    {
+        "name":"beach",
+        "namespace":"tiles",
+        "path":"beach.json"
+    }
+]

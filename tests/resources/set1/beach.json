@@ -1,0 +1,46 @@
+{
+    "resources":[
+        {
+            "type": "atlas",
+            "path": "beach.png",
+            "pieces": [
+                {
+                    "startX": 0,
+                    "startY": 0,
+                    "endX": 64,
+                    "endY": 64,
+                    "properties":{
+                        "angle": 45
+                    }
+                },
+                {
+                    "startX": 0,
+                    "startY": 64,
+                    "endX": 64,
+                    "endY": 128,
+                    "properties":{
+                        "angle": 135
+                    }
+                },
+                {
+                    "startX": 0,
+                    "startY": 128,
+                    "endX": 64,
+                    "endY": 192,
+                    "properties":{
+                        "angle": 225
+                    }
+                },
+                {
+                    "startX": 0,
+                    "startY": 194,
+                    "endX": 64,
+                    "endY": 256,
+                    "properties":{
+                        "angle": 315
+                    }
+                },
+            ]
+        }
+    ]
+}

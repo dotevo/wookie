@@ -1,7 +1,7 @@
 #include <wookie/ecs/GameObject.h>
 #include <wookie/rendering/GL/GLrenderer.h>
 
-void GLrenderer::initialize() {
+void GLrenderer::initialize(std::unique_ptr<Context>&) {
     static_assert(sizeof(glm::vec3) == sizeof(GLfloat) * 3, "Platform doesn't support this directly.");
 
     auto vertex = Shader::createFromFile("../tests/resources/basic_vs.glsl", GL_VERTEX_SHADER);
