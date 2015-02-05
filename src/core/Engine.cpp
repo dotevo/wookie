@@ -1,15 +1,17 @@
 #include <wookie/core/Engine.h>
-#include <wookie/core/RenderContext.h>
-
+#include <wookie/rendering/GL/GLcontext.h>
 
 void Engine::run()
 {
     auto context = glfwGetCurrentContext();
-    auto window = static_cast<RenderContext*>(glfwGetWindowUserPointer(context));
-
     while (!glfwWindowShouldClose(context)) {
         m_world.update();
-        window->update();
+
+        glfwPollEvents();
+        glfwSwapBuffers(context);
+        if (glfwGetKey (context, GLFW_KEY_ESCAPE)) {
+          glfwSetWindowShouldClose (context, 1);
+        }
     }
 }
 

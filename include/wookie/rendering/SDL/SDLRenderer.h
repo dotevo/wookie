@@ -10,7 +10,7 @@ public:
     SDLRenderer();
     virtual ~SDLRenderer() = default;
 
-    virtual void render(Renderable&) override;
+    virtual void render(Renderable const&) override;
 };
 
 

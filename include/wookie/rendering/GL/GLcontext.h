@@ -2,9 +2,6 @@
 
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
-#include <string>
-
-#include <wookie/core/WObject.h>
 
 enum WindowMode
 {
@@ -12,14 +9,12 @@ enum WindowMode
     FULLSCREEN
 };
 
-class Window: public WObject
+class GLcontext
 {
 public:
-    friend class RenderContext;
+    GLcontext();
 
-    Window(const Window&) = delete;
-    Window& operator=(const Window&) = delete;
-    ~Window();
+    ~GLcontext();
 
     int width() const;
 
@@ -27,19 +22,16 @@ public:
 
     WindowMode mode() const;
 
-    void setTitle(std::string&);
+    void setWindowTitle(std::string&);
 
 private:
-    Window() = default;
-
     static void mouseButtonCallback(GLFWwindow*, int, int, int);
     static void keyCallback(GLFWwindow*, int, int, int, int);
     static void resizeCallback(GLFWwindow*, int, int);
     static void closeCallback(GLFWwindow*);
+    static void framebufferSize(GLFWwindow*, int, int);
 
-    void init(GLFWwindow*);
-
-    bool update();
+    void windowSetup();
 
     GLFWwindow *m_handle {nullptr};
     bool m_resizable {true};

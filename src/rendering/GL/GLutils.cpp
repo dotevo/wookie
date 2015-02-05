@@ -3,7 +3,6 @@
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
-#include <iostream>
 
 namespace GLutils {
 
@@ -19,16 +18,20 @@ namespace GLutils {
         GLint status;
         glGetShaderiv(m_object, GL_COMPILE_STATUS, &status);
         if (status == GL_FALSE) {
+            GLint maxLength = 0;
+            glGetShaderiv(m_object, GL_INFO_LOG_LENGTH, &maxLength);
+
+            //The maxLength includes the NULL character
+            std::vector<GLchar> infoLog(maxLength);
+            glGetShaderInfoLog(m_object, maxLength, &maxLength, &infoLog[0]);
+
+            std::cerr << &infoLog[0];
+
             glDeleteShader(m_object);
             m_object = 0;
 
             throw std::runtime_error {"glCompileShadder failed..."};
         }
-    }
-
-    Shader::~Shader() {
-        if (m_object != 0)
-            glDeleteShader(m_object);
     }
 
     Shader Shader::createFromFile(const std::string &file, GLenum shaderType) {
@@ -43,7 +46,7 @@ namespace GLutils {
 
         Shader shader(buffer.str(), shaderType);
         return shader;
-    };
+    }
 
     Program::Program(const std::vector<Shader>& shaders) {
         if (shaders.size() == 0)
@@ -53,16 +56,17 @@ namespace GLutils {
         if (m_object == 0)
             throw std::runtime_error {"glCreateProgram failed"};
 
-        for (const auto &shader : shaders)
+        for (auto& shader : shaders) {
             glAttachShader(m_object, shader.id());
+        }
 
         // Bind attributes with predefined names
         glBindAttribLocation(m_object, AttribLoc::POSITION, "ie_pos");
-        glBindAttribLocation(m_object, AttribLoc::COLOR , "ie_color");
+        glBindAttribLocation(m_object, AttribLoc::TEXTURE , "ie_tex");
 
         glLinkProgram(m_object);
 
-        for (const auto &shader : shaders)
+        for (auto& shader : shaders)
             glDetachShader(m_object, shader.id());
 
         GLint status;

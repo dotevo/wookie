@@ -5,7 +5,7 @@ SDLRenderer::SDLRenderer(){
 
 }
 
-void SDLRenderer::render(Renderable& obj) {
+void SDLRenderer::render(Renderable const&) {
 
 }
 

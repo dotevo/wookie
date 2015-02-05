@@ -4,10 +4,16 @@
 #include <glm/glm.hpp>
 #include <vector>
 
+struct Vertex {
+    glm::vec3 position;
+    glm::vec3 color;
+};
+
 struct Renderable : public Component<Renderable>
 {
-    Renderable(std::vector<glm::vec3> v)
-        : vertices(std::move(v)) {}
+    Renderable(std::vector<Vertex> shape)
+        : shape(std::move(shape))
+    {}
 
-    std::vector<glm::vec3> vertices;
+    std::vector<Vertex> shape;
 };

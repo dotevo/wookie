@@ -4,15 +4,16 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 namespace GLutils {
 
-    enum AttribLoc { POSITION, COLOR };
+    enum AttribLoc { POSITION, TEXTURE };
 
     class Shader {
     public:
         Shader(const std::string &shaderSource, GLenum shaderType);
-        ~Shader();
+        ~Shader() = default;
 
         static Shader createFromFile(const std::string& file, GLenum shaderType);
 

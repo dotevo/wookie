@@ -1,6 +1,6 @@
 #include <wookie/core/Engine.h>
+#include <wookie/rendering/GL/GLrenderer.h>
 #include <wookie/rendering/RenderSystem.h>
-#include <wookie/rendering/Renderable.h>
 
 #include <iostream>
 
@@ -12,7 +12,7 @@ struct Direction : Component<Direction> {};
 
 int main() {
     Engine e;
-    auto r = std::make_unique<RenderSystem>(6);
+    auto r = std::make_unique<RenderSystem>(std::make_unique<GLrenderer>(), 6);
 
     auto& world = e.world();
 
@@ -20,12 +20,18 @@ int main() {
 
     auto& obj = world.create();
 
-    auto& tileMap = world.create();
+    auto& tile = world.create();
 
     Position c1;
     Position c2;
     Direction c3;
-    Renderable c4 {{{-0.5f, -0.5f, 0.0f}, {-0.5f, 0.5f, 0.0f}, {0.5f, 0.5f, 0.0f}, {0.5f, -0.5f, 0.0f}}};
+
+    Vertex v1 {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
+    Vertex v2 {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}};
+    Vertex v3 {{0.0f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
+    //Vertex v4 {{0.2f, -0.2f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+
+    Renderable c4 {{v1, v2, v3}};
 
     obj.add(c1, c4);
     auto o = obj.get<Position>();
@@ -54,7 +60,6 @@ int main() {
     std::cerr << obj2.hasComponents<Direction>();
     std::cerr << obj2.hasComponents<Position>();
     std::cerr << obj2.hasComponents<Position, Direction>();
-
 
     //TD<decltype(o)> objtype;
     //std::cerr << c1.group().to_string() << " " << c2.group().to_string() << " " << c3.group().to_string();
