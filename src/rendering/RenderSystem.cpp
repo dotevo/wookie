@@ -4,7 +4,7 @@
 #include <wookie/ecs/World.h>
 
 void RenderSystem::setup() {
-    m_renderer->initialize();
+    m_renderer->initialize(m_rc);
 }
 
 void RenderSystem::shutdown() {

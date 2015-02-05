@@ -15,7 +15,7 @@ public:
     GLrenderer() = default;
     virtual ~GLrenderer() = default;
 
-    virtual void initialize() override;
+    virtual void initialize(std::unique_ptr<Context>&) override;
 
     virtual void render(Renderable const&) override;
 

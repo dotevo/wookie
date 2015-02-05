@@ -3,13 +3,9 @@
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
 
-enum WindowMode
-{
-    WINDOWED,
-    FULLSCREEN
-};
+#include <wookie/rendering/Context.h>
 
-class GLcontext
+class GLcontext: public Context
 {
 public:
     GLcontext();
