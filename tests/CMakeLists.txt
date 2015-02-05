@@ -6,8 +6,10 @@ target_link_libraries(window wookie ${EXTRA_LIBS})
 add_executable(resource resource/main.cpp )
 target_link_libraries(resource wookie ${EXTRA_LIBS})
 
+if(WOOKIE_USE_SDL)
 add_executable(item item/main.cpp )
 target_link_libraries(item wookie ${EXTRA_LIBS})
+endif()
 
 file( COPY resources
     DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}

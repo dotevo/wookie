@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 #include <memory>
-#include <jsoncpp/json/json.h>
+#include <json/json.h>
 
 #include <wookie/core/WObject.h>
 

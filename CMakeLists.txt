@@ -19,6 +19,12 @@ option(WOOKIE_USE_SDL "Build with SDL" ON)
 #===LIBS===
 set(EXTRA_LIBS)
 
+#JSONCPP
+add_subdirectory(${CMAKE_SOURCE_DIR}/libs/jsoncpp)
+include_directories(${CMAKE_SOURCE_DIR}/libs/jsoncpp/include)
+list(APPEND EXTRA_LIBS jsoncpp_lib_static)
+message(STATUS "jsoncpp added")
+
 #GLM
 include_directories(${CMAKE_SOURCE_DIR}/libs/glm)
 message(STATUS "GLM added")
@@ -38,6 +44,8 @@ list(APPEND EXTRA_LIBS gl3w)
 include_directories(${CMAKE_SOURCE_DIR}/libs/gl3w/include)
 message(STATUS "GL3W added")
 
+add_definitions( -DWIN32 )
+
 #SDL
 if(WOOKIE_USE_SDL)
     add_definitions( -DHAVE_SDL )
@@ -48,14 +56,14 @@ if(WOOKIE_USE_SDL)
 endif()
 
 #JSONCPP
-find_package(Jsoncpp)
-if(JSONCPP_FOUND)
-    message(STATUS "JSONCPP found")
-    list(APPEND EXTRA_LIBS jsoncpp)
-else()
-    message(FATAL_ERROR "JSONCPP not found")
-    return()
-endif()
+#find_package(Jsoncpp)
+#if(JSONCPP_FOUND)
+#    message(STATUS "JSONCPP found")
+#    list(APPEND EXTRA_LIBS jsoncpp)
+#else()
+#    message(FATAL_ERROR "JSONCPP not found")
+#    return()
+#endif()
 
 #Wookie
 include_directories(${CMAKE_SOURCE_DIR}/include)

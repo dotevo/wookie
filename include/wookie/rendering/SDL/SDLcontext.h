@@ -1,5 +1,5 @@
 #pragma once
-//#ifdef HAVE_SDL
+#ifdef HAVE_SDL
 
 #include <string>
 #include <wookie/rendering/Context.h>
@@ -33,4 +33,4 @@ private:
     int m_height {768};
 };
 
-//#endif //HAVE_SDL
+#endif //HAVE_SDL
