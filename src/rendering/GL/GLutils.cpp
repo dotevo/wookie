@@ -3,6 +3,8 @@
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
+#include <iostream>
+#include <memory>
 
 namespace GLutils {
 
@@ -34,7 +36,13 @@ namespace GLutils {
         }
     }
 
-    Shader Shader::createFromFile(const std::string &file, GLenum shaderType) {
+    Shader::~Shader() {
+        if (m_object != 0)
+            glDeleteShader(m_object);
+    }
+
+    std::unique_ptr<Shader>
+    Shader::createFromFile(const std::string &file, GLenum shaderType) {
         std::ifstream f(file.c_str(), std::ios::in | std::ios::binary);
         if (!f.is_open()) {
             throw std::runtime_error {"Cannot open shader definition file: " + file};
@@ -44,11 +52,10 @@ namespace GLutils {
         buffer << f.rdbuf();
         f.close();
 
-        Shader shader(buffer.str(), shaderType);
-        return shader;
+        return std::make_unique<Shader>(buffer.str(), shaderType);
     }
 
-    Program::Program(const std::vector<Shader>& shaders) {
+    Program::Program(const std::vector<std::unique_ptr<Shader>>& shaders) {
         if (shaders.size() == 0)
             throw std::runtime_error {"Program cannot be linked with no shaders"};
 
@@ -57,7 +64,7 @@ namespace GLutils {
             throw std::runtime_error {"glCreateProgram failed"};
 
         for (auto& shader : shaders) {
-            glAttachShader(m_object, shader.id());
+            glAttachShader(m_object, shader->id());
         }
 
         // Bind attributes with predefined names
@@ -67,7 +74,7 @@ namespace GLutils {
         glLinkProgram(m_object);
 
         for (auto& shader : shaders)
-            glDetachShader(m_object, shader.id());
+            glDetachShader(m_object, shader->id());
 
         GLint status;
         glGetProgramiv(m_object, GL_LINK_STATUS, &status);

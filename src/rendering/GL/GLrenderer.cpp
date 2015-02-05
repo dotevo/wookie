@@ -1,13 +1,13 @@
 #include <wookie/ecs/GameObject.h>
 #include <wookie/rendering/GL/GLrenderer.h>
 
-void GLrenderer::initialize(std::unique_ptr<Context>&) {
-    static_assert(sizeof(glm::vec3) == sizeof(GLfloat) * 3, "Platform doesn't support this directly.");
+void GLrenderer::initialize(std::unique_ptr<Context>&)
+{
+    m_glShaders.reserve(2);
+    m_glShaders.push_back(Shader::createFromFile("../tests/resources/basic_vs.glsl", GL_VERTEX_SHADER));
+    m_glShaders.push_back(Shader::createFromFile("../tests/resources/basic_fs.glsl", GL_FRAGMENT_SHADER));
 
-    auto vertex = Shader::createFromFile("../tests/resources/basic_vs.glsl", GL_VERTEX_SHADER);
-    auto fragment = Shader::createFromFile("../tests/resources/basic_fs.glsl", GL_FRAGMENT_SHADER);
-
-    m_glProgram.reset(new Program{{vertex, fragment}});
+    m_glProgram.reset(new Program{m_glShaders});
 
     glGenVertexArrays(1, &m_vao);
     glGenBuffers(1, &m_vbo);

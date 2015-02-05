@@ -4,7 +4,7 @@
 
 #include <string>
 #include <vector>
-#include <iostream>
+#include <memory>
 
 namespace GLutils {
 
@@ -13,9 +13,10 @@ namespace GLutils {
     class Shader {
     public:
         Shader(const std::string &shaderSource, GLenum shaderType);
-        ~Shader() = default;
+        ~Shader();
 
-        static Shader createFromFile(const std::string& file, GLenum shaderType);
+        static std::unique_ptr<Shader>
+        createFromFile(const std::string& file, GLenum shaderType);
 
         GLuint id() const {
             return m_object;
@@ -30,7 +31,7 @@ namespace GLutils {
 
     class Program {
     public:
-        Program(const std::vector<Shader>& shaders);
+        Program(const std::vector<std::unique_ptr<Shader>>& shaders);
         ~Program();
 
         GLuint id() const {

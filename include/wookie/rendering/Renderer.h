@@ -1,6 +1,8 @@
 #pragma once
+
 #include <memory>
 #include <wookie/rendering/Context.h>
+
 struct Renderable;
 
 class Renderer {

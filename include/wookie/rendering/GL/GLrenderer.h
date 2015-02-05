@@ -21,6 +21,7 @@ public:
 
 private:
     std::unique_ptr<Program> m_glProgram {nullptr};
+    std::vector<std::unique_ptr<Shader>> m_glShaders;
 
     static constexpr int BUFFER_SIZE = 1000;
 
