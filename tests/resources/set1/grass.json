@@ -1,8 +1,7 @@
 {
-    "namespace":"tiles",
-    "name":"grass",
-    "images":[
+    "resources":[
         {
+            "id": "1",
             "type": "image",
             "path": "grass/45.png",
             "properties": {
@@ -10,6 +9,7 @@
             }
         },
         {
+            "id": "2",
             "type": "image",
             "path": "grass/135.png",
             "properties": {
@@ -17,6 +17,7 @@
             }
         },
         {
+            "id": "3",
             "type": "image",
             "path": "grass/225.png",
             "properties": {
@@ -24,6 +25,7 @@
             }
         },
         {
+            "id": "4",
             "type": "image",
             "path": "grass/315.png",
             "properties": {

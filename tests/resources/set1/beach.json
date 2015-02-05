@@ -1,7 +1,5 @@
 {
-    "namespace":"tiles",
-    "name":"beach",
-    "images":[
+    "resources":[
         {
             "type": "atlas",
             "path": "beach.png",
