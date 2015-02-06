@@ -29,10 +29,10 @@ int main() {
 
     Vertex v1 {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
     Vertex v2 {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}};
-    Vertex v3 {{0.0f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
-    //Vertex v4 {{0.2f, -0.2f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+    Vertex v3 {{-0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
+    Vertex v4 {{0.5f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
 
-    Renderable c4 {{v1, v2, v3}};
+    Renderable c4 {{v1, v2, v3, v4}, {0, 1, 2, 2, 1, 3}};
 
     obj.add(c1, c4);
     auto o = obj.get<Position>();

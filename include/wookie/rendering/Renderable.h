@@ -1,6 +1,7 @@
 #pragma once
 
 #include <wookie/ecs/Component.h>
+#include <GL/gl3w.h>
 #include <glm/glm.hpp>
 #include <vector>
 
@@ -11,9 +12,11 @@ struct Vertex {
 
 struct Renderable : public Component<Renderable>
 {
-    Renderable(std::vector<Vertex> shape)
-        : shape(std::move(shape))
+    Renderable(std::vector<Vertex> shape, std::vector<GLuint> indices) :
+        shape(std::move(shape)),
+        indices(std::move(indices))
     {}
 
     std::vector<Vertex> shape;
+    std::vector<GLuint> indices;
 };
