@@ -19,8 +19,6 @@ int main() {
 
     world.addSystem<RenderSystem>(std::move(r));
 
-    auto& obj = world.create();
-
     auto& tile = world.create();
 
     Position c1;
@@ -32,22 +30,12 @@ int main() {
     Vertex v3 {{-0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
     Vertex v4 {{0.5f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
 
-    Renderable c4 {{v1, v2, v3, v4}, {0, 1, 2, 2, 1, 3}};
+    Renderable c4 {{v1, v2, v3, v4}, {0, 1, 2, 2, 3, 1}};
 
-    obj.add(c1, c4);
-    auto o = obj.get<Position>();
-
-    std::cerr << std::boolalpha;
-    std::cerr << obj.hasComponents<Renderable>();
-    std::cerr << obj.hasComponents<Position>();
-    std::cerr << obj.hasComponents<Position, Direction>();
-
-    //obj.remove<Direction>();
-
-    std::cerr << std::endl;
-    std::cerr << obj.hasComponents<Direction>();
-    std::cerr << obj.hasComponents<Position>();
-    std::cerr << obj.hasComponents<Position, Direction>();
+    for (int i = 0; i < 30; ++i) {
+        auto& obj = world.create();
+        obj.add(c4);
+    }
 
     auto& obj2 = world.objectsById(0);
 

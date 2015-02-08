@@ -16,7 +16,7 @@ struct Renderable : public Component<Renderable>
         shape(std::move(shape)),
         indices(std::move(indices))
     {}
-
+    // TODO: probably should be enclosed in some kind of Shape/Mesh class
     std::vector<Vertex> shape;
     std::vector<GLuint> indices;
 };

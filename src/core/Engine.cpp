@@ -6,12 +6,6 @@ void Engine::run()
     auto context = glfwGetCurrentContext();
     while (!glfwWindowShouldClose(context)) {
         m_world.update();
-
-        glfwPollEvents();
-        glfwSwapBuffers(context);
-        if (glfwGetKey (context, GLFW_KEY_ESCAPE)) {
-          glfwSetWindowShouldClose (context, 1);
-        }
     }
 }
 

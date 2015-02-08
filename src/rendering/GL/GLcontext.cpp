@@ -105,3 +105,13 @@ int GLcontext::width() const {
 int GLcontext::height() const {
     return m_height;
 }
+
+void GLcontext::update()
+{
+    glfwPollEvents();
+    glfwSwapBuffers(m_handle);
+}
+
+void GLcontext::clear() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}

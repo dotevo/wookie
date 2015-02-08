@@ -12,13 +12,17 @@ public:
 
     ~GLcontext();
 
-    int width() const;
+    virtual int width() const override;
 
-    int height() const;
+    virtual int height() const override;
 
-    WindowMode mode() const;
+    virtual WindowMode mode() const override;
 
-    void setWindowTitle(std::string&);
+    virtual void setWindowTitle(std::string&) override;
+
+    virtual void update() override;
+
+    virtual void clear() override;
 
 private:
     static void mouseButtonCallback(GLFWwindow*, int, int, int);

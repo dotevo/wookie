@@ -18,4 +18,8 @@ public:
     virtual WindowMode mode() const = 0;
 
     virtual void setWindowTitle(std::string&) = 0;
+
+    virtual void update() = 0;
+
+    virtual void clear() = 0;
 };

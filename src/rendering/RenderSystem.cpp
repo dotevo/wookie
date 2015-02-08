@@ -10,12 +10,17 @@ void RenderSystem::setup() {
 void RenderSystem::shutdown() {
 }
 
-void RenderSystem::update(World& world) {
+void RenderSystem::update(World& world)
+{
     if (m_renderer == nullptr)
         return;
+
+    m_rc->clear();
 
     for (auto obj : world.objectsByComponents<Renderable>()) {
         auto r = std::get<0>(obj->get<Renderable>());
         m_renderer->render(*r);
     }
+
+    m_rc->update();
 }

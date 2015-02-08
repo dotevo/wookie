@@ -1,6 +1,9 @@
 #include <wookie/ecs/GameObject.h>
 #include <wookie/rendering/GL/GLrenderer.h>
 
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 void GLrenderer::initialize(std::unique_ptr<Context>&)
 {
     m_glShaders.reserve(2);
@@ -32,7 +35,14 @@ void GLrenderer::initialize(std::unique_ptr<Context>&)
 }
 
 void GLrenderer::render(Renderable const& obj) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glm::mat4 trans;
+    trans = glm::rotate(trans, 45.0f, glm::vec3(0.0f, 0.0f, 1.0f));
+
+    GLint unitrans = glGetUniformLocation(m_glProgram->id(), "ie_trans");
+    glUniformMatrix4fv(unitrans, 1, GL_TRUE, glm::value_ptr(trans));
+
     glUseProgram(m_glProgram->id());
     glBindVertexArray(m_vao);
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
