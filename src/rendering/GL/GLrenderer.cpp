@@ -34,20 +34,22 @@ void GLrenderer::initialize(std::unique_ptr<Context>&)
     glBindVertexArray(0);
 }
 
-void GLrenderer::render(Renderable const& obj) {
-    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+void GLrenderer::render(Renderable const& obj)
+{
+    glm::mat4 mvp = m_projection * m_view * obj.model;
 
-    glm::mat4 trans;
-    trans = glm::rotate(trans, 45.0f, glm::vec3(0.0f, 0.0f, 1.0f));
-
-    GLint unitrans = glGetUniformLocation(m_glProgram->id(), "ie_trans");
-    glUniformMatrix4fv(unitrans, 1, GL_TRUE, glm::value_ptr(trans));
+    GLint unimvp = glGetUniformLocation(m_glProgram->id(), "ie_mvp");
+    glUniformMatrix4fv(unimvp, 1, GL_FALSE, glm::value_ptr(mvp));
 
     glUseProgram(m_glProgram->id());
+
     glBindVertexArray(m_vao);
+
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, obj.shape.size() * sizeof(Vertex), &obj.shape[0]);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, obj.vertices.size() * sizeof(Vertex), &obj.vertices[0]);
+
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
     glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, obj.indices.size() * sizeof(GLuint), &obj.indices[0]);
+
     glDrawElements(GL_TRIANGLES, obj.indices.size(), GL_UNSIGNED_INT, 0);
 }

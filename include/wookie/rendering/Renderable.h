@@ -12,11 +12,12 @@ struct Vertex {
 
 struct Renderable : public Component<Renderable>
 {
-    Renderable(std::vector<Vertex> shape, std::vector<GLuint> indices) :
-        shape(std::move(shape)),
+    Renderable(std::vector<Vertex> vertices, std::vector<GLuint> indices) :
+        vertices(std::move(vertices)),
         indices(std::move(indices))
     {}
     // TODO: probably should be enclosed in some kind of Shape/Mesh class
-    std::vector<Vertex> shape;
+    glm::mat4 model;
+    std::vector<Vertex> vertices;
     std::vector<GLuint> indices;
 };
