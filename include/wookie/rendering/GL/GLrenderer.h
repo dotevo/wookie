@@ -4,6 +4,8 @@
 #include <wookie/rendering/Renderer.h>
 #include <wookie/rendering/Renderable.h>
 
+#include <glm/glm.hpp>
+
 #include <memory>
 #include <vector>
 
@@ -23,12 +25,22 @@ private:
     std::unique_ptr<Program> m_glProgram {nullptr};
     std::vector<std::unique_ptr<Shader>> m_glShaders;
 
-    static constexpr int BUFFER_SIZE = 1000;
-
     GLuint m_vao {0};
     GLuint m_vbo {0};
     GLuint m_ebo {0};
 
+    glm::mat4 m_model;
     glm::mat4 m_view;
     glm::mat4 m_projection;
+
+    std::array<glm::vec3, 4> m_vertices {{
+        {-0.5f, 0.5f, 0.0f},
+        {-0.5f, -0.5f, 0.0f},
+        {0.5f, -0.5f, 0.0f},
+        {0.5f, 0.5f, 0.0f},
+    }};
+
+    std::array<GLbyte, 6> m_indices {
+        {0, 1, 2, 0, 2, 3}
+    };
 };

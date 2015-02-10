@@ -25,12 +25,12 @@ int main() {
     Position c2;
     Direction c3;
 
-    Vertex v1 {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
-    Vertex v2 {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}};
-    Vertex v3 {{-0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
-    Vertex v4 {{0.5f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
+    //Vertex v1 {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
+    //Vertex v2 {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}};
+    //Vertex v3 {{-0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
+    //Vertex v4 {{0.5f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
 
-    Renderable c4 {{v1, v2, v3, v4}, {0, 1, 2, 2, 3, 1}};
+    Renderable c4 {std::make_unique<Tile>()};
 
     for (int i = 0; i < 30; ++i) {
         auto& obj = world.create();

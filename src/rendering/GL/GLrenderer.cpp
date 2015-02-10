@@ -19,15 +19,13 @@ void GLrenderer::initialize(std::unique_ptr<Context>&)
     glBindVertexArray(m_vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-    glBufferData(GL_ARRAY_BUFFER, BUFFER_SIZE * sizeof(Vertex), 0, GL_STREAM_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(glm::vec3), &m_vertices[0], GL_STATIC_DRAW);
 
-    glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
+    glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, 0, 0);
     glEnableVertexAttribArray(AttribLoc::POSITION);
-    glVertexAttribPointer(AttribLoc::TEXTURE, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, color));
-    glEnableVertexAttribArray(AttribLoc::TEXTURE);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, BUFFER_SIZE * sizeof(GLuint), 0, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(GLuint), &m_indices[0], GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -36,7 +34,10 @@ void GLrenderer::initialize(std::unique_ptr<Context>&)
 
 void GLrenderer::render(Renderable const& obj)
 {
-    glm::mat4 mvp = m_projection * m_view * obj.model;
+    float sf = 0.1f;
+    m_model = glm::scale(glm::mat4(1.0f), glm::vec3(sf, sf, 0));
+
+    glm::mat4 mvp = m_projection * m_view * m_model;
 
     GLint unimvp = glGetUniformLocation(m_glProgram->id(), "ie_mvp");
     glUniformMatrix4fv(unimvp, 1, GL_FALSE, glm::value_ptr(mvp));
@@ -45,11 +46,5 @@ void GLrenderer::render(Renderable const& obj)
 
     glBindVertexArray(m_vao);
 
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, obj.vertices.size() * sizeof(Vertex), &obj.vertices[0]);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
-    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, obj.indices.size() * sizeof(GLuint), &obj.indices[0]);
-
-    glDrawElements(GL_TRIANGLES, obj.indices.size(), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &m_indices[0]);
 }
