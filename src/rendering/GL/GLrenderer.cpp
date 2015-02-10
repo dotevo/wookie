@@ -25,7 +25,7 @@ void GLrenderer::initialize(std::unique_ptr<Context>&)
     glEnableVertexAttribArray(AttribLoc::POSITION);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(GLuint), &m_indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(GLbyte), &m_indices[0], GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -34,8 +34,8 @@ void GLrenderer::initialize(std::unique_ptr<Context>&)
 
 void GLrenderer::render(Renderable const& obj)
 {
-    float sf = 0.1f;
-    m_model = glm::scale(glm::mat4(1.0f), glm::vec3(sf, sf, 0));
+    //float sf = 0.1f;
+    //m_model = glm::scale(glm::mat4(1.0f), glm::vec3(sf, sf, 0));
 
     glm::mat4 mvp = m_projection * m_view * m_model;
 
@@ -46,5 +46,5 @@ void GLrenderer::render(Renderable const& obj)
 
     glBindVertexArray(m_vao);
 
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &m_indices[0]);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
 }
