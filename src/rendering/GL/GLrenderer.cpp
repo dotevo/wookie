@@ -27,15 +27,21 @@ void GLrenderer::initialize(std::unique_ptr<Context>&)
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(GLbyte), &m_indices[0], GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 void GLrenderer::render(Renderable const& obj)
 {
-    //float sf = 0.1f;
-    //m_model = glm::scale(glm::mat4(1.0f), glm::vec3(sf, sf, 0));
+    m_scaleFactor = 0.2f;
+    m_model = glm::scale(glm::mat4(1.0f), glm::vec3(m_scaleFactor, m_scaleFactor, 1.0f));
+
+    glm::vec3 eye = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 center = glm::vec3(0.0f, 0.0f, 1.0f);
+    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+    m_view = glm::lookAt(eye, center, up);
 
     glm::mat4 mvp = m_projection * m_view * m_model;
 

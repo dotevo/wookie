@@ -4,7 +4,8 @@
 #include <memory>
 
 struct Tile {
-    float scale {1.0f};
+    float gridX {0.0f};
+    float gridY {0.0f};
 };
 
 struct Renderable : public Component<Renderable>

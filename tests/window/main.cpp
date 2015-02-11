@@ -32,7 +32,7 @@ int main() {
 
     Renderable c4 {std::make_unique<Tile>()};
 
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 1; ++i) {
         auto& obj = world.create();
         obj.add(c4);
     }

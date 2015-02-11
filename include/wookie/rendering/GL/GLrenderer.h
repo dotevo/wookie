@@ -13,6 +13,7 @@ using namespace GLutils;
 
 class GLrenderer : public Renderer
 {
+    friend class RenderSystem;
 public:
     GLrenderer() = default;
     virtual ~GLrenderer() = default;
@@ -43,4 +44,6 @@ private:
     std::array<GLbyte, 6> m_indices {
         {0, 1, 2, 0, 2, 3}
     };
+
+    float m_scaleFactor {1.0f};
 };
