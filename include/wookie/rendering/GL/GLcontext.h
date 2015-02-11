@@ -7,6 +7,8 @@
 
 class GLcontext: public Context
 {
+    friend class GLrenderer;
+
 public:
     GLcontext();
 
@@ -39,4 +41,6 @@ private:
     std::string m_windowTitle {"myGame"};
     int m_width {1024};
     int m_height {768};
+    int m_fbWidth {0};
+    int m_fbHeight {0};
 };

@@ -4,8 +4,10 @@
 #include <memory>
 
 struct Tile {
-    float gridX {0.0f};
-    float gridY {0.0f};
+    Tile(int X, int Y) : gridX(X), gridY(Y) {}
+
+    int gridX;
+    int gridY;
 };
 
 struct Renderable : public Component<Renderable>

@@ -30,11 +30,12 @@ int main() {
     //Vertex v3 {{-0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
     //Vertex v4 {{0.5f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
 
-    Renderable c4 {std::make_unique<Tile>()};
-
-    for (int i = 0; i < 1; ++i) {
-        auto& obj = world.create();
-        obj.add(c4);
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j<4; ++j) {
+            Renderable c4 {std::make_unique<Tile>(j, i)};
+            auto& obj = world.create();
+            obj.add(c4);
+        }
     }
 
     auto& obj2 = world.objectsById(0);

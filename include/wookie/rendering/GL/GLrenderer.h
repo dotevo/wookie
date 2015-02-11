@@ -1,6 +1,7 @@
 #pragma once
 
 #include <wookie/rendering/GL/GLutils.h>
+#include <wookie/rendering/GL/GLcontext.h>
 #include <wookie/rendering/Renderer.h>
 #include <wookie/rendering/Renderable.h>
 
@@ -35,10 +36,10 @@ private:
     glm::mat4 m_projection;
 
     std::array<glm::vec3, 4> m_vertices {{
-        {-0.5f, 0.5f, 0.0f},
-        {-0.5f, -0.5f, 0.0f},
-        {0.5f, -0.5f, 0.0f},
-        {0.5f, 0.5f, 0.0f},
+        {-0.5f, 0.5f, 1.0f},
+        {-0.5f, -0.5f, 1.0f},
+        {0.5f, -0.5f, 1.0f},
+        {0.5f, 0.5f, 1.0f},
     }};
 
     std::array<GLbyte, 6> m_indices {
@@ -46,4 +47,5 @@ private:
     };
 
     float m_scaleFactor {1.0f};
+    GLcontext *m_context {nullptr};
 };

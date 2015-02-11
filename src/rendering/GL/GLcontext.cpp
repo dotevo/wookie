@@ -61,10 +61,16 @@ void GLcontext::windowSetup() {
     glfwSetWindowSizeCallback(m_handle, resizeCallback);
     glfwSetFramebufferSizeCallback(m_handle, framebufferSize);
 
+    glfwGetFramebufferSize(m_handle, &m_fbWidth, &m_fbHeight);
+    glfwGetWindowSize(m_handle, &m_width, &m_height);
+
     glfwSetInputMode(m_handle, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
 void GLcontext::framebufferSize(GLFWwindow *window, int width, int height) {
+    auto context = static_cast<GLcontext*>(glfwGetWindowUserPointer(window));
+    context->m_fbWidth = width;
+    context->m_fbHeight = height;
     glViewport(0, 0, width, height);
 }
 
