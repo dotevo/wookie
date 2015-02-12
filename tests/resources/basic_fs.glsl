@@ -1,9 +1,9 @@
 #version 150
 
-in vec2 Tex;
+in vec3 Tex;
 
 out vec4 ie_color;
 
 void main() {
-    ie_color = vec4(1.0, 1.0, 1.0, 1.0);
+    ie_color = vec4(Tex, 1.0);
 }

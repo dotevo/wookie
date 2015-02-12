@@ -30,10 +30,13 @@ void GLrenderer::initialize(std::unique_ptr<Context>& rc)
     glBindVertexArray(m_vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-    glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(glm::vec3), &m_vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(glm::vec3), &m_vertices[0], GL_STATIC_DRAW);
 
-    glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer(AttribLoc::POSITION, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(glm::vec3), 0);
     glEnableVertexAttribArray(AttribLoc::POSITION);
+
+    glVertexAttribPointer(AttribLoc::TEXTURE, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(glm::vec3), (void*)sizeof(glm::vec3));
+    glEnableVertexAttribArray(AttribLoc::TEXTURE);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(GLbyte), &m_indices[0], GL_STATIC_DRAW);
@@ -58,7 +61,7 @@ void GLrenderer::render(Renderable const& obj)
     m_model = translateMat * scaleMat;
 
     m_projection = glm::ortho(-(float)m_context->m_fbWidth/2, (float)m_context->m_fbWidth/2,
-                              -(float)m_context->m_fbHeight/2, (float)m_context->m_fbHeight/2, 0.1f, 10.0f);
+                              -(float)m_context->m_fbHeight/2, (float)m_context->m_fbHeight/2, 0.0f, 10.0f);
 
     glm::mat4 mvp = m_projection * m_view * m_model;
 
