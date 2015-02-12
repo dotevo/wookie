@@ -35,20 +35,8 @@ private:
     glm::mat4 m_view;
     glm::mat4 m_projection;
 
-    std::array<glm::vec3, 8> m_vertices {{
-        {-0.5f, 0.5f, 0.0f},
-            {1.0f, 0.0f, 0.0f},
-        {-0.5f, -0.5f, 0.0f},
-            {0.0f, 1.0f, 0.0f},
-        {0.5f, -0.5f, 0.0f},
-            {0.0f, 0.0f, 1.0f},
-        {0.5f, 0.5f, 1.0f},
-            {1.0f, 1.0f, 0.0f},
-    }};
-
-    std::array<GLbyte, 6> m_indices {
-        {0, 1, 2, 0, 2, 3}
-    };
+    std::array<glm::vec3, 8> m_vertices;
+    std::array<GLbyte, 6> m_indices;
 
     float m_scaleFactor {1.0f};
     GLcontext *m_context {nullptr};

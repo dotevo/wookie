@@ -16,12 +16,29 @@ void GLrenderer::initialize(std::unique_ptr<Context>& rc)
 
     m_glProgram.reset(new Program{m_glShaders});
 
+    // Everything is a square
+    m_vertices = {{
+        {-0.5f, 0.5f, 0.0f},
+        {1.0f, 0.0f, 0.0f},
+        {-0.5f, -0.5f, 0.0f},
+        {0.0f, 1.0f, 0.0f},
+        {0.5f, -0.5f, 0.0f},
+        {0.0f, 0.0f, 1.0f},
+        {0.5f, 0.5f, 0.0f},
+        {1.0f, 1.0f, 1.0f},
+    }};
+
+    m_indices = {0, 3, 2, 0, 2, 1};
+
     // Camera is fixed so we set it once
     glm::vec3 eye = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 center = glm::vec3(0.0f, 0.0f, 1.0f);
     glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
     m_view = glm::lookAt(eye, center, up);
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
 
     glGenVertexArrays(1, &m_vao);
     glGenBuffers(1, &m_vbo);
