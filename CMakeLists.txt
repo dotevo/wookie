@@ -55,15 +55,9 @@ if(WOOKIE_USE_SDL)
     message(STATUS "SDL added")
 endif()
 
-#JSONCPP
-#find_package(Jsoncpp)
-#if(JSONCPP_FOUND)
-#    message(STATUS "JSONCPP found")
-#    list(APPEND EXTRA_LIBS jsoncpp)
-#else()
-#    message(FATAL_ERROR "JSONCPP not found")
-#    return()
-#endif()
+#Lodepng
+aux_source_directory(libs/lodepng SOURCES)
+include_directories(${CMAKE_SOURCE_DIR}/libs/lodepng)
 
 #Wookie
 include_directories(${CMAKE_SOURCE_DIR}/include)

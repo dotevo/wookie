@@ -1,9 +1,11 @@
 #version 150
 
-in vec3 Tex;
+in vec2 Tex;
 
 out vec4 ie_color;
 
+uniform sampler2D ie_sampler2D;
+
 void main() {
-    ie_color = vec4(Tex, 1.0);
+    ie_color = texture(ie_sampler2D, Tex);
 }
