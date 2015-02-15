@@ -35,14 +35,12 @@ void GLrenderer::initialize(std::unique_ptr<Context>& rc)
 
     m_view = glm::lookAt(eye, center, up);
 
+    glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
-    glEnable(GL_CULL_FACE);
 
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_TEXTURE_2D);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);;
 
     glGenVertexArrays(1, &m_vao);
     glGenBuffers(1, &m_vbo);
@@ -68,7 +66,7 @@ void GLrenderer::initialize(std::unique_ptr<Context>& rc)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 64, 64, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TILE_W, TILE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -80,12 +78,12 @@ void GLrenderer::render(Renderable const& obj)
 {
     m_model = m_projection = glm::mat4();
 
-    auto scaleX = m_scaleFactor * 64;
-    auto scaleY = m_scaleFactor * 64;
+    auto scaleX = m_scaleFactor * TILE_W;
+    auto scaleY = m_scaleFactor * TILE_H;
     auto scaleMat = glm::scale(glm::mat4(1.0f),glm::vec3(scaleX, scaleY, 1.0f));
 
-    auto translateX = obj.m_tile->gridY * 64/2 + obj.m_tile->gridX * 64;
-    auto translateY = obj.m_tile->gridY * 64/2;
+    auto translateX = obj.m_tile->gridY * TILE_W/2 + obj.m_tile->gridX * TILE_W/2;
+    auto translateY = obj.m_tile->gridY * TILE_H/4 - obj.m_tile->gridX * TILE_H/4;
     auto translateMat = glm::translate(glm::mat4(1.0f), glm::vec3(translateX, translateY, 0.0f));
 
     m_model = translateMat * scaleMat;
@@ -102,7 +100,7 @@ void GLrenderer::render(Renderable const& obj)
 
     glBindVertexArray(m_vao);
 
-    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 64, 64, GL_RGBA, GL_UNSIGNED_BYTE, obj.m_tile->img.img());
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TILE_W, TILE_H, GL_RGBA, GL_UNSIGNED_BYTE, obj.m_tile->img.img());
     glGenerateMipmap(GL_TEXTURE_2D);
 
     glUniform1i(glGetUniformLocation(m_glProgram->id(), "ie_sampler2D"), 0);

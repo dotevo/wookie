@@ -41,4 +41,7 @@ private:
 
     float m_scaleFactor {1.0f};
     GLcontext *m_context {nullptr};
+
+    static constexpr int TILE_W = 64;
+    static constexpr int TILE_H = 64;
 };
