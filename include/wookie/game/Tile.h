@@ -3,10 +3,10 @@
 #include <wookie/resource/Image.h>
 
 struct Tile {
-    Tile(int X, int Y, Image const& IMG) :
-        gridX(X), gridY(Y), img(IMG) {}
+    Tile(int x, int y, Image const *img) :
+        gridX(x), gridY(y), img(img) {}
 
     int gridX;
     int gridY;
-    Image const& img;
+    Image const *img;
 };

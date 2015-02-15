@@ -3,7 +3,7 @@
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
 
-#include <wookie/rendering/Context.h>
+#include <wookie/rendering/RenderContext.h>
 
 class GLcontext: public RenderContext
 {

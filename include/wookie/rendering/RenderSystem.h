@@ -1,7 +1,7 @@
 #pragma once
 
 #include <wookie/ecs/System.h>
-#include <wookie/rendering/Context.h>
+#include <wookie/rendering/RenderContext.h>
 #include <wookie/rendering/Renderer.h>
 
 #include <memory>

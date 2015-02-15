@@ -103,7 +103,7 @@ void GLrenderer::render(Renderable const& obj)
 
     glBindVertexArray(m_vao);
 
-    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TILE_W, TILE_H, GL_RGBA, GL_UNSIGNED_BYTE, obj.m_tile->img.img());
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TILE_W, TILE_H, GL_RGBA, GL_UNSIGNED_BYTE, obj.m_tile->img->img());
     glGenerateMipmap(GL_TEXTURE_2D);
 
     glUniform1i(glGetUniformLocation(m_glProgram->id(), "ie_sampler2D"), 0);

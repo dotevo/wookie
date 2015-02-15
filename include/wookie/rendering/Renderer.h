@@ -1,9 +1,9 @@
 #pragma once
 
 #include <memory>
-#include <wookie/rendering/Context.h>
 
 struct Renderable;
+struct RenderContext;
 
 class Renderer {
 public:

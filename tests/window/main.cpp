@@ -34,7 +34,7 @@ int main() {
 
     for (int i = 0; i < 64; ++i) {
         for (int j = 64; j>0; --j) {
-            Renderable c4 {std::make_unique<Tile>(j, i, img)};
+            Renderable c4 {std::make_unique<Tile>(j, i, &img)};
             auto& obj = world.create();
             obj.add(c4);
         }
