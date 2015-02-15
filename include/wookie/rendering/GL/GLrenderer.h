@@ -3,7 +3,7 @@
 #include <wookie/rendering/GL/GLutils.h>
 #include <wookie/rendering/GL/GLcontext.h>
 #include <wookie/rendering/Renderer.h>
-#include <wookie/rendering/Renderable.h>
+#include <wookie/game/Renderable.h>
 
 #include <glm/glm.hpp>
 
@@ -14,19 +14,16 @@ using namespace GLutils;
 
 class GLrenderer : public Renderer
 {
-    friend class RenderSystem;
 public:
     GLrenderer() = default;
+
     virtual ~GLrenderer() = default;
 
-    virtual void initialize(std::unique_ptr<Context>&) override;
+    virtual void initialize(std::unique_ptr<RenderContext>&) override;
 
     virtual void render(Renderable const&) override;
 
 private:
-    std::unique_ptr<Program> m_glProgram {nullptr};
-    std::vector<std::unique_ptr<Shader>> m_glShaders;
-
     GLuint m_vao {0};
     GLuint m_vbo {0};
     GLuint m_ebo {0};
@@ -41,6 +38,9 @@ private:
 
     float m_scaleFactor {1.0f};
     GLcontext *m_context {nullptr};
+
+    std::unique_ptr<Program> m_glProgram {nullptr};
+    std::vector<std::unique_ptr<Shader>> m_glShaders;
 
     static constexpr int TILE_W = 64;
     static constexpr int TILE_H = 64;

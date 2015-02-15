@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-void GLrenderer::initialize(std::unique_ptr<Context>& rc)
+void GLrenderer::initialize(std::unique_ptr<RenderContext>& rc)
 {
     m_context = static_cast<GLcontext*>(rc.get());
 
@@ -35,6 +35,12 @@ void GLrenderer::initialize(std::unique_ptr<Context>& rc)
 
     m_view = glm::lookAt(eye, center, up);
 
+    // Projection matrix also fixed
+    m_projection = glm::ortho(-(float)m_context->m_fbWidth/2, (float)m_context->m_fbWidth/2,
+                              -(float)m_context->m_fbHeight/2, (float)m_context->m_fbHeight/2,
+                              0.0f, -10.0f);
+
+    // OpenGL specific stuff
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
@@ -76,7 +82,7 @@ void GLrenderer::initialize(std::unique_ptr<Context>& rc)
 
 void GLrenderer::render(Renderable const& obj)
 {
-    m_model = m_projection = glm::mat4();
+    m_model = glm::mat4();
 
     auto scaleX = m_scaleFactor * TILE_W;
     auto scaleY = m_scaleFactor * TILE_H;
@@ -87,9 +93,6 @@ void GLrenderer::render(Renderable const& obj)
     auto translateMat = glm::translate(glm::mat4(1.0f), glm::vec3(translateX, translateY, 0.0f));
 
     m_model = translateMat * scaleMat;
-
-    m_projection = glm::ortho(-(float)m_context->m_fbWidth/2, (float)m_context->m_fbWidth/2,
-                              -(float)m_context->m_fbHeight/2, (float)m_context->m_fbHeight/2, 0.0f, -10.0f);
 
     glm::mat4 mvp = m_projection * m_view * m_model;
 

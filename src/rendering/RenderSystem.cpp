@@ -1,7 +1,6 @@
-#include <wookie/rendering/Renderable.h>
 #include <wookie/rendering/RenderSystem.h>
-
 #include <wookie/ecs/World.h>
+#include <wookie/game/Renderable.h>
 
 void RenderSystem::setup() {
     m_renderer->initialize(m_rc);

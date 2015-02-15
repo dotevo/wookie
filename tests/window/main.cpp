@@ -30,9 +30,11 @@ int main() {
     //Vertex v3 {{-0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
     //Vertex v4 {{0.5f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
 
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j<4; ++j) {
-            Renderable c4 {std::make_unique<Tile>(j, i)};
+    Image img("tile.png");
+
+    for (int i = 0; i < 64; ++i) {
+        for (int j = 64; j>0; --j) {
+            Renderable c4 {std::make_unique<Tile>(j, i, img)};
             auto& obj = world.create();
             obj.add(c4);
         }

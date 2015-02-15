@@ -5,7 +5,7 @@
 
 #include <wookie/rendering/Context.h>
 
-class GLcontext: public Context
+class GLcontext: public RenderContext
 {
     friend class GLrenderer;
 

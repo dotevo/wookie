@@ -1,15 +1,17 @@
 #pragma once
 
+#include <string>
+
 enum WindowMode
 {
     WINDOWED,
     FULLSCREEN
 };
 
-class Context
+class RenderContext
 {
 public:
-    virtual ~Context() = default;
+    virtual ~RenderContext() = default;
 
     virtual int width() const = 0;
 
