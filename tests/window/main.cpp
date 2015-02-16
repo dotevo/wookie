@@ -27,8 +27,8 @@ int main() {
 
     Image img("tile.png");
 
-    for (int i = 0; i < 64; ++i) {
-        for (int j = 64; j > 0; --j) {
+    for (int i = 0; i < 128; ++i) {
+        for (int j = 128; j > 0; --j) {
             Renderable c4 {i, j, &img};
             auto& obj = world.create();
             obj.add(c4);

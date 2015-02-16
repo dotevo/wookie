@@ -70,8 +70,8 @@ void GLTileRenderer::initialize(std::unique_ptr<RenderContext>& rc)
     glBindTexture(GL_TEXTURE_2D, m_tex);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TILE_W, TILE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
     glBindVertexArray(0);
@@ -104,7 +104,6 @@ void GLTileRenderer::render(Renderable const& obj)
     glBindVertexArray(m_vao);
 
     glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TILE_W, TILE_H, GL_RGBA, GL_UNSIGNED_BYTE, obj.img->data());
-    glGenerateMipmap(GL_TEXTURE_2D);
 
     glUniform1i(glGetUniformLocation(m_glProgram->id(), "ie_sampler2D"), 0);
 
