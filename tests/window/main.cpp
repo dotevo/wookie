@@ -1,6 +1,6 @@
 #include <wookie/core/Engine.h>
 #include <wookie/rendering/GL/GLcontext.h>
-#include <wookie/rendering/GL/GLrenderer.h>
+#include <wookie/rendering/GL/GLTileRenderer.h>
 #include <wookie/rendering/RenderSystem.h>
 
 #include <iostream>

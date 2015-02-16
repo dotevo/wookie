@@ -1,5 +1,5 @@
 #include <wookie/ecs/GameObject.h>
-#include <wookie/rendering/GL/GLrenderer.h>
+#include <wookie/rendering/GL/GLTileRenderer.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
