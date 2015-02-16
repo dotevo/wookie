@@ -11,6 +11,6 @@ Image::Image(std::string path) {
         throw std::runtime_error {lodepng_error_text(error)};
 }
 
-unsigned char const* Image::img() const {
+unsigned char const* Image::data() const {
     return m_image.data();
 }

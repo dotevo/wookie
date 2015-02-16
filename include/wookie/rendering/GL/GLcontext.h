@@ -7,7 +7,7 @@
 
 class GLcontext: public RenderContext
 {
-    friend class GLrenderer;
+    friend class GLTileRenderer;
 
 public:
     GLcontext();

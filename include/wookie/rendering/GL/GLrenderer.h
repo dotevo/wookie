@@ -3,7 +3,7 @@
 #include <wookie/rendering/GL/GLutils.h>
 #include <wookie/rendering/GL/GLcontext.h>
 #include <wookie/rendering/Renderer.h>
-#include <wookie/game/Renderable.h>
+#include <wookie/game/isometric/Renderable.h>
 
 #include <glm/glm.hpp>
 
@@ -12,12 +12,12 @@
 
 using namespace GLutils;
 
-class GLrenderer : public Renderer
+class GLTileRenderer : public Renderer
 {
 public:
-    GLrenderer() = default;
+    GLTileRenderer() = default;
 
-    virtual ~GLrenderer() = default;
+    virtual ~GLTileRenderer() = default;
 
     virtual void initialize(std::unique_ptr<RenderContext>&) override;
 

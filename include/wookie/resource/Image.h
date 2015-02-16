@@ -15,7 +15,7 @@ public:
 
     virtual ~Image() = default;
 
-    unsigned char const* img() const;
+    unsigned char const* data() const;
 
 private:
 #ifdef HAVE_SDL

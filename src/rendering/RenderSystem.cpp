@@ -1,6 +1,6 @@
 #include <wookie/rendering/RenderSystem.h>
 #include <wookie/ecs/World.h>
-#include <wookie/game/Renderable.h>
+#include <wookie/game/isometric/Renderable.h>
 
 void RenderSystem::setup() {
     m_renderer->initialize(m_rc);

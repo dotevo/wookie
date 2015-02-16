@@ -13,7 +13,7 @@ struct Direction : Component<Direction> {};
 
 int main() {
     Engine e;
-    auto r = std::make_unique<RenderSystem>(std::make_unique<GLcontext>(),std::make_unique<GLrenderer>(), 6);
+    auto r = std::make_unique<RenderSystem>(std::make_unique<GLcontext>(),std::make_unique<GLTileRenderer>(), 6);
 
     auto& world = e.world();
 
@@ -25,16 +25,11 @@ int main() {
     Position c2;
     Direction c3;
 
-    //Vertex v1 {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
-    //Vertex v2 {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}};
-    //Vertex v3 {{-0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}};
-    //Vertex v4 {{0.5f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}};
-
     Image img("tile.png");
 
     for (int i = 0; i < 64; ++i) {
-        for (int j = 64; j>0; --j) {
-            Renderable c4 {std::make_unique<Tile>(j, i, &img)};
+        for (int j = 64; j > 0; --j) {
+            Renderable c4 {i, j, &img};
             auto& obj = world.create();
             obj.add(c4);
         }

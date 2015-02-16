@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-void GLrenderer::initialize(std::unique_ptr<RenderContext>& rc)
+void GLTileRenderer::initialize(std::unique_ptr<RenderContext>& rc)
 {
     m_context = static_cast<GLcontext*>(rc.get());
 
@@ -17,13 +17,13 @@ void GLrenderer::initialize(std::unique_ptr<RenderContext>& rc)
     // Everything is a square
     m_vertices = {{
         {-0.5f, 0.5f, 0.0f},
-        {0.0f, 1.0f, 0.0f},
-        {-0.5f, -0.5f, 0.0f},
         {0.0f, 0.0f, 0.0f},
+        {-0.5f, -0.5f, 0.0f},
+        {0.0f, 1.0f, 0.0f},
         {0.5f, -0.5f, 0.0f},
-        {1.0f, 0.0f, 0.0f},
-        {0.5f, 0.5f, 0.0f},
         {1.0f, 1.0f, 0.0f},
+        {0.5f, 0.5f, 0.0f},
+        {1.0f, 0.0f, 0.0f},
     }};
 
     m_indices = {0, 1, 2, 0, 2, 3};
@@ -80,7 +80,7 @@ void GLrenderer::initialize(std::unique_ptr<RenderContext>& rc)
     glBindBuffer(GL_TEXTURE_2D, 0);
 }
 
-void GLrenderer::render(Renderable const& obj)
+void GLTileRenderer::render(Renderable const& obj)
 {
     m_model = glm::mat4();
 
@@ -88,8 +88,8 @@ void GLrenderer::render(Renderable const& obj)
     auto scaleY = m_scaleFactor * TILE_H;
     auto scaleMat = glm::scale(glm::mat4(1.0f),glm::vec3(scaleX, scaleY, 1.0f));
 
-    auto translateX = obj.m_tile->gridY * TILE_W/2 + obj.m_tile->gridX * TILE_W/2;
-    auto translateY = obj.m_tile->gridY * TILE_H/4 - obj.m_tile->gridX * TILE_H/4;
+    auto translateX = obj.gridY * TILE_W/2 + obj.gridX * TILE_W/2;
+    auto translateY = obj.gridY * TILE_H/4 - obj.gridX * TILE_H/4;
     auto translateMat = glm::translate(glm::mat4(1.0f), glm::vec3(translateX, translateY, 0.0f));
 
     m_model = translateMat * scaleMat;
@@ -103,7 +103,7 @@ void GLrenderer::render(Renderable const& obj)
 
     glBindVertexArray(m_vao);
 
-    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TILE_W, TILE_H, GL_RGBA, GL_UNSIGNED_BYTE, obj.m_tile->img->img());
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TILE_W, TILE_H, GL_RGBA, GL_UNSIGNED_BYTE, obj.img->data());
     glGenerateMipmap(GL_TEXTURE_2D);
 
     glUniform1i(glGetUniformLocation(m_glProgram->id(), "ie_sampler2D"), 0);
