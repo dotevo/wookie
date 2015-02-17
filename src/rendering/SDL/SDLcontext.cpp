@@ -10,9 +10,11 @@ SDLcontext::SDLcontext(){
                               SDL_WINDOW_OPENGL);
 
     m_screenSurface = SDL_GetWindowSurface( m_window );
+    m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
 SDLcontext::~SDLcontext(){
+    SDL_DestroyRenderer(m_renderer);
     SDL_DestroyWindow(m_window);
 }
 
@@ -20,11 +22,16 @@ void SDLcontext::setWindowTitle(std::string&){
 }
 
 void SDLcontext::update(){
+    SDL_RenderPresent(m_renderer);
+    //Events
     SDL_Event e;
     while (SDL_PollEvent(&e)){
         handleEvent(&e);
     }
-    SDL_UpdateWindowSurface( m_window );
+}
+
+void SDLcontext::clear(){
+    SDL_RenderClear(m_renderer);
 }
 
 void SDLcontext::handleEvent(SDL_Event *event){

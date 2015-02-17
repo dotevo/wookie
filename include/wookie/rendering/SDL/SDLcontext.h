@@ -22,12 +22,15 @@ public:
 
     SDL_Surface * getSurface() const { return m_screenSurface; }
 
+    SDL_Renderer * getRenderer() const { return m_renderer; }
+
     void update();
 
-    void clear() {}
+    void clear();
 private:
     SDL_Window* m_window;
     SDL_Surface * m_screenSurface;
+    SDL_Renderer *m_renderer;
 
     WindowMode m_mode {WINDOWED};
     std::string m_windowTitle {"myGame"};

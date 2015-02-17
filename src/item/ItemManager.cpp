@@ -59,7 +59,7 @@ bool ItemManager::loadItem(std::string name_space, std::string name){
         std::cout << "NOT FOUND" << std::endl;
         return false;
     }
-
+    std::string npath = objPath[name_space][name].substr(0, objPath[name_space][name].find_last_of("\\/"));
     std::ifstream in(objPath[name_space][name]);
     if (!in.is_open()){
         std::cout << "Failed to open "<< objPath[name_space][name] <<'\n';
@@ -76,7 +76,7 @@ bool ItemManager::loadItem(std::string name_space, std::string name){
             auto type = obj.get("type","");
             if(type.isString()){
                 if(type.asString().compare("image")==0){
-                    parseImage(item,obj);
+                    parseImage(item,obj,npath);
                 }else if(type.asString().compare("atlas")==0){
                     //TODO
                 }
@@ -89,7 +89,7 @@ bool ItemManager::loadItem(std::string name_space, std::string name){
     return true;
 }
 
-void ItemManager::parseImage(Item* item,Json::Value value){
+void ItemManager::parseImage(Item* item,Json::Value value,std::string npath){
     auto path = value.get("path","");
-    mResourceManager->load<Image>(path.asString());
+    mResourceManager->load<Image>(npath+"/"+path.asString());
 }

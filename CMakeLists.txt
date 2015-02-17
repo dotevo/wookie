@@ -52,7 +52,6 @@ message(STATUS "GL3W added")
 #SDL
 if(WOOKIE_USE_SDL)
     add_definitions( -DHAVE_SDL )
-    list(APPEND EXTRA_LIBS SDL2_image)
     list(APPEND EXTRA_LIBS SDL2)
     aux_source_directory(src/rendering/SDL SOURCES)
     message(STATUS "SDL added")

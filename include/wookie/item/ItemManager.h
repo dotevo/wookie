@@ -21,7 +21,7 @@ public:
 private:
     bool addItemToEnv(std::string name_space, std::string name, std::string path);
     bool loadItem(std::string name_space, std::string name);
-    void parseImage(Item* item, Json::Value value);
+    void parseImage(Item* item, Json::Value value,std::string path);
 
     ResourceManager * mResourceManager;
     //Namespace/Name/Path
