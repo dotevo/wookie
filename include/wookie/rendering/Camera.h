@@ -5,7 +5,6 @@
 struct Camera : public Component<Camera>
 {
 private:
-
     struct Position
     {
         float x {0.0f};
@@ -20,7 +19,6 @@ private:
     };
 
 public:
-
     using Rotation = float;
     using Scale = float;
 
