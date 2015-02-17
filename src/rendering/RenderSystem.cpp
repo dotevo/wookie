@@ -1,4 +1,5 @@
 #include <wookie/rendering/RenderSystem.h>
+#include <wookie/rendering/Camera.h>
 #include <wookie/ecs/World.h>
 #include <wookie/game/isometric/Renderable.h>
 
@@ -16,9 +17,14 @@ void RenderSystem::update(World& world)
 
     m_rc->clear();
 
-    for (auto obj : world.objectsByComponents<Renderable>()) {
-        auto r = std::get<0>(obj->get<Renderable>());
-        m_renderer->render(*r);
+    for (auto cameras : world.objectsByComponents<Camera>()) {
+        auto camera = std::get<0>(cameras->get<Camera>());
+        if (camera->active) {
+            for (auto obj : world.objectsByComponents<Renderable>()) {
+                auto r = std::get<0>(obj->get<Renderable>());
+                m_renderer->render(*r, *camera);
+            }
+        }
     }
 
     m_rc->update();

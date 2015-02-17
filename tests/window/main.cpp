@@ -2,6 +2,7 @@
 #include <wookie/rendering/GL/GLcontext.h>
 #include <wookie/rendering/GL/GLTileRenderer.h>
 #include <wookie/rendering/RenderSystem.h>
+#include <wookie/rendering/Camera.h>
 
 #include <iostream>
 
@@ -19,16 +20,19 @@ int main() {
 
     world.addSystem<RenderSystem>(std::move(r));
 
-    auto& tile = world.create();
+    auto& camera = world.create();
 
     Position c1;
     Position c2;
     Direction c3;
+    Camera c4;
+
+    camera.add(c4);
 
     Image img("tile.png");
 
-    for (int i = 0; i < 128; ++i) {
-        for (int j = 128; j > 0; --j) {
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 8; j > 0; --j) {
             Renderable c4 {i, j, &img};
             auto& obj = world.create();
             obj.add(c4);

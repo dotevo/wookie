@@ -27,18 +27,6 @@ void GLTileRenderer::initialize(std::unique_ptr<RenderContext>& rc)
 
     m_indices = {0, 1, 2, 0, 2, 3};
 
-    // Camera is fixed so we set it once
-    glm::vec3 eye = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec3 center = glm::vec3(0.0f, 0.0f, -1.0f);
-    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-
-    m_view = glm::lookAt(eye, center, up);
-
-    // Projection matrix also fixed
-    m_projection = glm::ortho(-(float)m_context->m_fbWidth/2, (float)m_context->m_fbWidth/2,
-                              -(float)m_context->m_fbHeight/2, (float)m_context->m_fbHeight/2,
-                              0.0f, -10.0f);
-
     // OpenGL specific stuff
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
@@ -79,19 +67,32 @@ void GLTileRenderer::initialize(std::unique_ptr<RenderContext>& rc)
     glBindBuffer(GL_TEXTURE_2D, 0);
 }
 
-void GLTileRenderer::render(Renderable const& obj)
+void GLTileRenderer::render(Renderable const& obj, Camera const& camera)
 {
     m_model = glm::mat4();
 
-    auto scaleX = m_scaleFactor * TILE_W;
-    auto scaleY = m_scaleFactor * TILE_H;
+    auto scaleX = camera.factor * TILE_W;
+    auto scaleY = camera.factor * TILE_H;
     auto scaleMat = glm::scale(glm::mat4(1.0f),glm::vec3(scaleX, scaleY, 1.0f));
 
-    auto translateX = obj.gridY * TILE_W/2 + obj.gridX * TILE_W/2;
-    auto translateY = obj.gridY * TILE_H/4 - obj.gridX * TILE_H/4;
+    auto translateX = obj.gridY * TILE_W/2 + obj.gridX * TILE_W/2 - camera.offset.x;
+    auto translateY = obj.gridY * TILE_H/4 - obj.gridX * TILE_H/4 - camera.offset.y;
     auto translateMat = glm::translate(glm::mat4(1.0f), glm::vec3(translateX, translateY, 0.0f));
 
     m_model = translateMat * scaleMat;
+
+    glm::vec3 eye = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 center = glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+    m_view = glm::lookAt(eye, center, up);
+
+    auto left = camera.fov.left * m_context->m_fbWidth/2;
+    auto right = camera.fov.right * m_context->m_fbWidth/2;
+    auto bottom = camera.fov.bottom * m_context->m_fbHeight/2;
+    auto top = camera.fov.top * m_context->m_fbHeight/2;
+
+    m_projection = glm::ortho(left, right, bottom, top, 0.0f, -10.0f);
 
     glm::mat4 mvp = m_projection * m_view * m_model;
 
