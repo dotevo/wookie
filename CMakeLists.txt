@@ -19,6 +19,11 @@ option(WOOKIE_USE_SDL "Build with SDL" ON)
 #===LIBS===
 set(EXTRA_LIBS)
 
+#DEFS
+if(WIN32)
+    add_definitions( -DWIN32 )
+endif(WIN32)
+
 #JSONCPP
 add_subdirectory(${CMAKE_SOURCE_DIR}/libs/jsoncpp)
 include_directories(${CMAKE_SOURCE_DIR}/libs/jsoncpp/include)
@@ -43,8 +48,6 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/libs/gl3w)
 list(APPEND EXTRA_LIBS gl3w)
 include_directories(${CMAKE_SOURCE_DIR}/libs/gl3w/include)
 message(STATUS "GL3W added")
-
-add_definitions( -DWIN32 )
 
 #SDL
 if(WOOKIE_USE_SDL)

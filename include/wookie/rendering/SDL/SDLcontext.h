@@ -2,10 +2,10 @@
 #ifdef HAVE_SDL
 
 #include <string>
-#include <wookie/rendering/Context.h>
+#include <wookie/rendering/RenderContext.h>
 #include <SDL2/SDL.h>
 
-class SDLcontext: public Context
+class SDLcontext: public RenderContext
 {
 public:
     SDLcontext();
@@ -23,6 +23,8 @@ public:
     SDL_Surface * getSurface() const { return m_screenSurface; }
 
     void update() { SDL_UpdateWindowSurface( m_window ); }
+
+    void clear() {}
 private:
     SDL_Window* m_window;
     SDL_Surface * m_screenSurface;
