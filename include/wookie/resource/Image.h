@@ -20,8 +20,9 @@ public:
 private:
 #ifdef HAVE_SDL
     SDL_Surface *surface;
+#else
+    std::vector<unsigned char> m_image;
 #endif
     uint32_t m_width;
     uint32_t m_height;
-    std::vector<unsigned char> m_image;
 };

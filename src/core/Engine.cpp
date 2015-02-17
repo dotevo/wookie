@@ -4,17 +4,8 @@
 
 void Engine::run()
 {
-    auto context = glfwGetCurrentContext();
-    while (!glfwWindowShouldClose(context)) {
-        auto cas = m_world.objectsByComponents<Camera>();
-        auto camera = std::get<0>(cas[0]->get<Camera>());
-        if (glfwGetKey(context, 'O'))
-            camera->offset.x -= 10.0f;
-        if (glfwGetKey(context, 'P'))
-            camera->offset.x += 10.0f;
-
+    while (running) {
         m_world.update();
-
     }
 }
 
@@ -24,4 +15,8 @@ void Engine::setup() {
 
 void Engine::shutdown() {
     m_world.shutdown();
+}
+
+void Engine::close(){
+    running = false;
 }

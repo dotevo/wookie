@@ -18,7 +18,10 @@ public:
     void run();
     void shutdown();
 
+    void close();
+
 private:
+    bool running = true;
     World m_world;
 };
 

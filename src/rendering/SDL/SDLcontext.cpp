@@ -18,3 +18,63 @@ SDLcontext::~SDLcontext(){
 
 void SDLcontext::setWindowTitle(std::string&){
 }
+
+void SDLcontext::update(){
+    SDL_Event e;
+    while (SDL_PollEvent(&e)){
+        handleEvent(&e);
+    }
+    SDL_UpdateWindowSurface( m_window );
+}
+
+void SDLcontext::handleEvent(SDL_Event *event){
+    if(event->type == SDL_WINDOWEVENT) {
+        if(event->window.windowID == SDL_GetWindowID(m_window)){
+            switch (event->window.event) {
+            /*
+                case SDL_WINDOWEVENT_SHOWN:
+                    onShow();
+                    break;
+                case SDL_WINDOWEVENT_HIDDEN:
+                    onHide();
+                    break;
+                case SDL_WINDOWEVENT_EXPOSED:
+                    onExpose();
+                    break;
+                case SDL_WINDOWEVENT_MOVED:
+                    onMove(event->window.data1, event->window.data2);
+                    break;
+                case SDL_WINDOWEVENT_RESIZED:
+                    onResize(event->window.data1, event->window.data2);
+                    break;
+                case SDL_WINDOWEVENT_MINIMIZED:
+                    onMinimize();
+                    break;
+                case SDL_WINDOWEVENT_MAXIMIZED:
+                    onMaximize();
+                    break;
+                case SDL_WINDOWEVENT_RESTORED:
+                    onRestore();
+                    break;
+                case SDL_WINDOWEVENT_ENTER:
+                    onEnter();
+                    break;
+                case SDL_WINDOWEVENT_LEAVE:
+                    onLeave();
+                    break;
+                case SDL_WINDOWEVENT_FOCUS_GAINED:
+                    onFocusIn();
+                    break;
+                case SDL_WINDOWEVENT_FOCUS_LOST:
+                    onFocusOut();
+                    break;
+                    */
+                case SDL_WINDOWEVENT_CLOSE:
+                    onClose();
+                    break;
+                default:
+                    break;
+                }
+        }
+    }
+}

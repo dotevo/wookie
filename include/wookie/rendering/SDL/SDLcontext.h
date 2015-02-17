@@ -22,7 +22,7 @@ public:
 
     SDL_Surface * getSurface() const { return m_screenSurface; }
 
-    void update() { SDL_UpdateWindowSurface( m_window ); }
+    void update();
 
     void clear() {}
 private:
@@ -33,6 +33,7 @@ private:
     std::string m_windowTitle {"myGame"};
     int m_width {1024};
     int m_height {768};
+    void handleEvent(SDL_Event *e);
 };
 
 #endif //HAVE_SDL

@@ -14,7 +14,10 @@ struct Direction : Component<Direction> {};
 
 int main() {
     Engine e;
-    auto r = std::make_unique<RenderSystem>(std::make_unique<SDLcontext>(),std::make_unique<SDLTileRenderer>( ), 6);
+    auto rc = std::make_unique<SDLcontext>();
+
+    rc->onClose.connect(&e,&Engine::close);
+    auto r = std::make_unique<RenderSystem>(std::move(rc),std::make_unique<SDLTileRenderer>( ), 6);
 
     ResourceManager *rm = new ResourceManager();
     ItemManager *im = new ItemManager(rm);
